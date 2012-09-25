@@ -1,4 +1,4 @@
-require 'status-cat/engine'
+require 'status_cat/engine'
 
 module StatusCat
 end

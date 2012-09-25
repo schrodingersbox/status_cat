@@ -1,7 +1,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
-require 'status-cat/version'
+require 'status_cat/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = StatusCat::VERSION
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']
-  s.homepage    = 'https://github.com/schrodingersbox/status-cat'
+  s.homepage    = 'https://github.com/schrodingersbox/status_cat'
   s.summary     = 'Rails engine for checking system health'
   s.description = ''
 
