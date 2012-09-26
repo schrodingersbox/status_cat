@@ -9,5 +9,8 @@ spec/dummy/.sass-cache
 # Ignore RubyMine files
 /.idea
 
+# Ignore SimpleCov output
+/coverage
+
 # http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
 Gemfile.lock

@@ -2,6 +2,10 @@
 
 This engine makes monitoring the status of your Rails environment easier
 
+## Testing
+
+    `rspec spec && open coverage/index.html`
+
 ## Reference
 
 * [Getting Started with Engines](http://edgeguides.rubyonrails.org/engines.html)
