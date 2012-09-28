@@ -1,7 +1,17 @@
-StatusCat.define :action_mailer do
+module StatusCat
 
-  description do
-    "checks ActionMailer configuration for #{Rails.env} environment"
+  module Checkers
+
+    class ActionMailerChecker
+
+      def value
+      end
+
+      def status
+      end
+
+    end
+
   end
 
 end

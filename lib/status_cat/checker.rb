@@ -2,14 +2,12 @@ module StatusCat
 
   class Checker
 
-    attr_reader :name
+    def self.check( name )
 
-    def initialize( name, &declarations  )
-      @name = name
     end
 
-    def description( &block )
-      @description_block = block
+    def self.check_all
+
     end
 
   end

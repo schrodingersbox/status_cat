@@ -8,8 +8,6 @@ require 'spec_helper'
 describe 'coverage' do
 
   it 'has a spec for every file' do
-    pending
-
     [
       'app/controllers',
       'app/helpers',

@@ -1,7 +1,17 @@
-StatusCat.define :active_record do
+module StatusCat
 
-  description do
-    "checks ActiveRecord configuration for #{Rails.env} environment"
+  module Checkers
+
+    class ActiveRecordChecker
+
+      def value
+      end
+
+      def status
+      end
+
+    end
+
   end
 
 end

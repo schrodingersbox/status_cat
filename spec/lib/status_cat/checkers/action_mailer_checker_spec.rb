@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StatusCat::Checker do
+describe StatusCat::Checkers::ActionMailerChecker do
 
   it 'needs to be specced'
 
