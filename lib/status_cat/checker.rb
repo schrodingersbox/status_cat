@@ -12,6 +12,8 @@ module StatusCat
       rescue Exception => e
         return e
       end
+
+      return nil
     end
 
   end

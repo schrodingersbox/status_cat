@@ -6,9 +6,9 @@ module StatusCat
 
       def value
         config       = YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )
-        adapter      = config[ connector ][ 'adapter' ]
-        username     = config[ connector ][ 'username' ]
-        database     = config[ connector ][ 'database' ]
+        adapter      = config[ Rails.env ][ 'adapter' ]
+        username     = config[ Rails.env ][ 'username' ]
+        database     = config[ Rails.env ][ 'database' ]
 
         return "#{adapter}:#{username}@#{database}"
       end
