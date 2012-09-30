@@ -17,7 +17,11 @@ This engine makes monitoring the status of your Rails environment easier
 ## TODO
 
 * Status model
+  * Add name
+  * Memoize values
+
 * Status controller / view / helper
+
 * Status mailer
 
 * ActiveRecord status

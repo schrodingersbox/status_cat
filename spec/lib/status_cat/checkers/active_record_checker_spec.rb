@@ -24,7 +24,7 @@ describe StatusCat::Checkers::ActiveRecordChecker do
 
     it 'returns an error message if it fails to query the database' do
       expected = 'This is only a test'
-      ActiveRecord::Base.connection.stub!( :execute ).and_raise( expected )
+      ActiveRecord::Base.connection.should_receive( :execute ).and_raise( expected )
       @checker.status.to_s.should eql( expected )
     end
 

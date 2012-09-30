@@ -11,6 +11,14 @@ module StatusCat
       def status
         unless  ActionMailer::Base.delivery_method == :test
           fail_on_exception do
+            settings       = ActionMailer::Base.smtp_settings
+            address        = settings[ :address ]
+            port           = settings[ :port ]
+            domain         = settings[ :domain ]
+            user_name      = settings[ :user_name ]
+            password       = settings[ :password ]
+            authentication = settings[ :authentication ]
+
             Net::SMTP.start( address, port, domain, user_name, password, authentication ) { |smtp| }
           end
         end
