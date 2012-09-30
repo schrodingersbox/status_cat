@@ -2,12 +2,16 @@ module StatusCat
 
   class Checker
 
-    def self.check( name )
-
+    def self.check( names = nil )
+      # TODO implement
     end
 
-    def self.check_all
-
+    def fail_on_exception
+      begin
+        yield
+      rescue Exception => e
+        return e
+      end
     end
 
   end
