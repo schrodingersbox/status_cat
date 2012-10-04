@@ -1,0 +1,16 @@
+<h1><%= t( :h1, :scope => :status_cat ) %></h1>
+
+<table>
+    <tr>
+        <th><%= t( :name, :scope => :status_cat ) %></th>
+        <th><%= t( :value, :scope => :status_cat ) %></th>
+        <th><%= t( :status, :scope => :status_cat ) %></th>
+    </tr>
+    <% StatusCat::Checker.all.each do |checker| %>
+        <tr>
+            <td><%= checker.class.name %></td>
+            <td><%= checker.value %></td>
+            <td><%= checker.status %></td>
+        </tr>
+    <% end %>
+</table>

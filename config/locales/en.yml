@@ -1,0 +1,6 @@
+en:
+  status_cat:
+    h1: Status Report
+    name: Name
+    value: Value
+    status: Status

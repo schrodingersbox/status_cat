@@ -6,6 +6,10 @@ describe StatusCat::Checkers::ActiveRecordChecker do
     @checker = StatusCat::Checkers::ActiveRecordChecker.new
   end
 
+  it 'inherits from StatusCat::Checker' do
+    @checker.should be_a_kind_of( StatusCat::Checker )
+  end
+
   describe 'value' do
 
     it 'returns the ActiveRecord adapter, username and database' do

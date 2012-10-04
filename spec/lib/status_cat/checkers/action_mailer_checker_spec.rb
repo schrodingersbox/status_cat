@@ -16,6 +16,10 @@ describe StatusCat::Checkers::ActionMailerChecker do
     ActionMailer::Base.delivery_method = :test
   end
 
+  it 'inherits from StatusCat::Checker' do
+    @checker.should be_a_kind_of( StatusCat::Checker )
+  end
+
   describe 'value' do
 
     it 'returns the ActionMailer SMTP address and port' do

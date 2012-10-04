@@ -2,25 +2,33 @@ require 'spec_helper'
 
 describe StatusCat::Checker do
 
-  describe 'check' do
+  before( :each ) do
+    @checker = StatusCat::Checker.new
+  end
 
-    it 'checks itself when no name is given'
+  describe 'all' do
 
-    it 'checks a single named value'
-
-    it 'checks an array of values'
-
-    it 'checks all known values'
+    it 'returns a list of Checkers' do
+      all = StatusCat::Checker.all
+      all.should be_an_instance_of( Array )
+      all.length.should > 0
+      all.each { |checker| checker.should be_a_kind_of( StatusCat::Checker ) }
+    end
 
   end
 
   describe 'fail_on_exception' do
 
-    it 'returns an exception from the block given'
+    it 'returns an exception if raised from the block given' do
+      error = 'test'
+      status = @checker.send( :fail_on_exception ) { raise error }
+      status.to_s.should eql( error )
+    end
 
-    it 'returns nil when there is no exception'
-
-    it 'throws an exception if not given a block'
+    it 'returns nil when there is no exception' do
+      status = @checker.send( :fail_on_exception ) { true }
+      status.should be_nil
+    end
 
   end
 

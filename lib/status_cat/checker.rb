@@ -1,21 +1,38 @@
-module StatusCat
+# checker.rb
+#
+# Base class for all status checkers
 
-  class Checker
+class StatusCat::Checker
 
-    def self.check( names = nil )
-      # TODO implement
+  # Class Methods
+
+  def self.all
+    return [
+      StatusCat::Checkers::ActionMailerChecker.new,
+      StatusCat::Checkers::ActiveRecordChecker.new
+    ]
+  end
+
+  # Instance methods
+
+  def value
+    raise 'Unimplemented'
+  end
+
+  def status
+    raise 'Unimplemented'
+  end
+
+protected
+
+  def fail_on_exception
+    begin
+      yield
+    rescue Exception => e
+      return e
     end
 
-    def fail_on_exception
-      begin
-        yield
-      rescue Exception => e
-        return e
-      end
-
-      return nil
-    end
-
+    return nil
   end
 
 end
