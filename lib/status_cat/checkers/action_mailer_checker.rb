@@ -3,6 +3,10 @@ module StatusCat
 
     class ActionMailerChecker < StatusCat::Checker
 
+      def name
+        return :action_mailer
+      end
+
       def value
         settings       = ActionMailer::Base.smtp_settings
         return "#{settings[ :address ]}:#{settings[ :port ]}"

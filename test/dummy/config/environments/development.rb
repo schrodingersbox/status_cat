@@ -34,4 +34,7 @@ Dummy::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # https://rails.lighthouseapp.com/projects/8994/tickets/2324-configreload_plugins-true-only-works-in-environmentrb?spam=1
+  config.reload_plugins = true
 end

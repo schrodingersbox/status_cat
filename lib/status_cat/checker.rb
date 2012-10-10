@@ -15,6 +15,10 @@ class StatusCat::Checker
 
   # Instance methods
 
+  def name
+    raise 'Unimplemented'
+  end
+
   def value
     raise 'Unimplemented'
   end

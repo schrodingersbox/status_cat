@@ -4,6 +4,10 @@ module StatusCat
 
     class ActiveRecordChecker < StatusCat::Checker
 
+      def name
+        return :active_record
+      end
+
       def value
         config       = YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )
         adapter      = config[ Rails.env ][ 'adapter' ]
