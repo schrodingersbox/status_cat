@@ -4,6 +4,8 @@
 
 class StatusCat::Checker
 
+  attr_reader :name, :value, :status
+
   # Class Methods
 
   def self.all
@@ -14,18 +16,6 @@ class StatusCat::Checker
   end
 
   # Instance methods
-
-  def name
-    raise 'Unimplemented'
-  end
-
-  def value
-    raise 'Unimplemented'
-  end
-
-  def status
-    raise 'Unimplemented'
-  end
 
 protected
 

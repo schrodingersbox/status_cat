@@ -2,13 +2,9 @@ require 'spec_helper'
 
 describe StatusCat::Checker do
 
-  before( :each ) do
-    @checker = StatusCat::Checker.new
-  end
+  context 'class' do
 
-  describe 'all' do
-
-    it 'returns a list of Checkers' do
+    it 'all returns a list of Checkers' do
       all = StatusCat::Checker.all
       all.should be_an_instance_of( Array )
       all.length.should > 0
@@ -17,17 +13,31 @@ describe StatusCat::Checker do
 
   end
 
-  describe 'fail_on_exception' do
+  context 'instance' do
 
-    it 'returns an exception if raised from the block given' do
-      error = 'test'
-      status = @checker.send( :fail_on_exception ) { raise error }
-      status.to_s.should eql( error )
+    before( :each ) do
+      @checker = StatusCat::Checker.new
     end
 
-    it 'returns nil when there is no exception' do
-      status = @checker.send( :fail_on_exception ) { true }
-      status.should be_nil
+    it 'has a name, value, and status accessor' do
+      @checker.name.should be_nil
+      @checker.value.should be_nil
+      @checker.status.should be_nil
+    end
+
+    describe 'fail_on_exception' do
+
+      it 'returns an exception if raised from the block given' do
+        error = 'test'
+        status = @checker.send( :fail_on_exception ) { raise error }
+        status.to_s.should eql( error )
+      end
+
+      it 'returns nil when there is no exception' do
+        status = @checker.send( :fail_on_exception ) { true }
+        status.should be_nil
+      end
+
     end
 
   end

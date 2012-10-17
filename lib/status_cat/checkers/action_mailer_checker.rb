@@ -3,29 +3,27 @@ module StatusCat
 
     class ActionMailerChecker < StatusCat::Checker
 
-      def name
-        return :action_mailer
-      end
+      def initialize
+        @name = :action_mailer
+        @value = "#{config[ :address ]}:#{config[ :port ]}"
 
-      def value
-        settings       = ActionMailer::Base.smtp_settings
-        return "#{settings[ :address ]}:#{settings[ :port ]}"
-      end
-
-      def status
         unless  ActionMailer::Base.delivery_method == :test
-          fail_on_exception do
-            settings       = ActionMailer::Base.smtp_settings
-            address        = settings[ :address ]
-            port           = settings[ :port ]
-            domain         = settings[ :domain ]
-            user_name      = settings[ :user_name ]
-            password       = settings[ :password ]
-            authentication = settings[ :authentication ]
+          @status = fail_on_exception do
+              settings       = ActionMailer::Base.smtp_settings
+              address        = settings[ :address ]
+              port           = settings[ :port ]
+              domain         = settings[ :domain ]
+              user_name      = settings[ :user_name ]
+              password       = settings[ :password ]
+              authentication = settings[ :authentication ]
 
-            Net::SMTP.start( address, port, domain, user_name, password, authentication ) { |smtp| }
+              Net::SMTP.start( address, port, domain, user_name, password, authentication ) { |smtp| }
+            end
           end
-        end
+      end
+
+      def config
+        ActionMailer::Base.smtp_settings
       end
 
     end

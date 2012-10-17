@@ -4,23 +4,17 @@ module StatusCat
 
     class ActiveRecordChecker < StatusCat::Checker
 
-      def name
-        return :active_record
-      end
+      def initialize
+        @name = :active_record
+        @value = "#{config[ 'adapter' ]}:#{config[ 'username' ]}@#{config[ 'database' ]}"
 
-      def value
-        config       = YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )
-        adapter      = config[ Rails.env ][ 'adapter' ]
-        username     = config[ Rails.env ][ 'username' ]
-        database     = config[ Rails.env ][ 'database' ]
-
-        return "#{adapter}:#{username}@#{database}"
-      end
-
-      def status
-        fail_on_exception do
+        @status = fail_on_exception do
           ActiveRecord::Base.connection.execute( "select max(version) from schema_migrations" )
         end
+      end
+
+      def config
+        YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
       end
 
     end
