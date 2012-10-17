@@ -39,3 +39,5 @@ end
 
 
 task :default => :test
+
+load 'tasks/spec-cat.rake'
