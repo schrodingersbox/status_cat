@@ -19,9 +19,6 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Status model
-  * Figure out memoization and inheritance / module structure
-
 * Status controller / view / helper
 
 * Status mailer

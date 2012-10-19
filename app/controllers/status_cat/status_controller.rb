@@ -1,4 +1,4 @@
-class StatusCat::StatusController < StatusCat::ApplicationController
+class StatusCat::StatusController < ApplicationController
 
   def index
   end
