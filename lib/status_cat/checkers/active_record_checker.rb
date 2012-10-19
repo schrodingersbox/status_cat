@@ -5,7 +5,6 @@ module StatusCat
     class ActiveRecordChecker < StatusCat::Checker
 
       def initialize
-        @name = :active_record
         @value = "#{config[ 'adapter' ]}:#{config[ 'username' ]}@#{config[ 'database' ]}"
 
         @status = fail_on_exception do
@@ -14,7 +13,7 @@ module StatusCat
       end
 
       def config
-        YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
+        return YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
       end
 
     end

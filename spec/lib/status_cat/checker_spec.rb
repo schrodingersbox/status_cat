@@ -19,8 +19,11 @@ describe StatusCat::Checker do
       @checker = StatusCat::Checker.new
     end
 
-    it 'has a name, value, and status accessor' do
-      @checker.name.should be_nil
+    it 'generates a symbolized class name' do
+      @checker.name.should be( :"" )
+    end
+
+    it 'has a value and status accessor' do
       @checker.value.should be_nil
       @checker.status.should be_nil
     end

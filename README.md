@@ -19,11 +19,27 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Status controller / view / helper
+* Add shared spec for 'behave like a checker'
 
-* Status mailer
-
+* Name derived from class - checker
+* Checker factory method
 * Extensible statuses
+
+* Status controller / view / helper
+* Red/green for cell based on pass/fail - no css for email friendliness
+* Status mailer
 
 * Rake task to run status checks and output to console
 * Rake task to run status checks and email on failure, suitable for crons
+
+* Write RDoc
+  * General checker concept
+  * How to
+    * Integrate into app as action
+    * Run rake tasks
+    * Periodic check and email on failure
+  * Existing checkers
+  * How to add a new checker
+  * Shared spec
+
+* Publish as gem

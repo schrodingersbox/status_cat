@@ -8,14 +8,13 @@ describe StatusCat::Checkers::ActionMailerChecker do
     @fail = 'This is only a test'
   end
 
+  it_should_behave_like 'a StatusCat::Checker' do
+    let( :checker ) { @checker }
+  end
+
   context 'instance' do
 
-    it 'inherits from StatusCat::Checker' do
-      @checker.should be_a_kind_of( StatusCat::Checker )
-    end
-
-    it 'has a name, value, and status accessor' do
-      @checker.name.should be( :action_mailer )
+    it 'has a value, and status accessor' do
       @checker.value.should eql( @value )
       @checker.status.should be_nil
     end

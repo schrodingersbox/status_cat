@@ -4,7 +4,6 @@ module StatusCat
     class ActionMailerChecker < StatusCat::Checker
 
       def initialize
-        @name = :action_mailer
         @value = "#{config[ :address ]}:#{config[ :port ]}"
 
         unless  ActionMailer::Base.delivery_method == :test
@@ -23,7 +22,7 @@ module StatusCat
       end
 
       def config
-        ActionMailer::Base.smtp_settings
+        return ActionMailer::Base.smtp_settings
       end
 
     end
