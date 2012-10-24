@@ -12,49 +12,40 @@ describe StatusCat::Checkers::ActionMailerChecker do
     let( :checker ) { @checker }
   end
 
-  context 'instance' do
+  it 'provides configuration' do
+    @checker.config.should eql( ActionMailer::Base.smtp_settings )
+  end
 
-    it 'has a value, and status accessor' do
-      @checker.value.should eql( @value )
-      @checker.status.should be_nil
+  describe 'status' do
+
+    before( :each ) do
+      ActionMailer::Base.delivery_method = :smtp
+      ActionMailer::Base.smtp_settings  = {
+          :address => 'smtp.sendgrid.net',
+          :port => '587'
+        }
     end
 
-    it 'provides configuration' do
-      @checker.config.should eql( ActionMailer::Base.smtp_settings )
+    after( :each ) do
+      ActionMailer::Base.delivery_method = :test
     end
 
-    describe 'status' do
+    context 'pass' do
 
-      before( :each ) do
-        ActionMailer::Base.delivery_method = :smtp
-        ActionMailer::Base.smtp_settings  = {
-            :address => 'smtp.sendgrid.net',
-            :port => '587'
-          }
+      it 'passes if it can make an SMTP connection' do
+        Net::SMTP.should_receive( :start )
+        @checker = StatusCat::Checkers::ActionMailerChecker.new
+        @checker.status.should be_nil
       end
 
-      after( :each ) do
-        ActionMailer::Base.delivery_method = :test
-      end
+    end
 
-      context 'pass' do
+    context 'fail' do
 
-        it 'passes if it can make an SMTP connection' do
-          Net::SMTP.should_receive( :start )
-          @checker = StatusCat::Checkers::ActionMailerChecker.new
-          @checker.status.should be_nil
-        end
-
-      end
-
-      context 'fail' do
-
-        it 'returns an error message if it can not make an SMTP connection' do
-          Net::SMTP.should_receive( :start ).and_raise( @fail )
-          @checker = StatusCat::Checkers::ActionMailerChecker.new
-          @checker.status.to_s.should eql( @fail )
-        end
-
+      it 'returns an error message if it can not make an SMTP connection' do
+        Net::SMTP.should_receive( :start ).and_raise( @fail )
+        @checker = StatusCat::Checkers::ActionMailerChecker.new
+        @checker.status.to_s.should eql( @fail )
       end
 
     end

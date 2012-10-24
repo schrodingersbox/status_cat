@@ -12,33 +12,24 @@ describe StatusCat::Checkers::ActiveRecordChecker do
     let( :checker ) { @checker }
   end
 
-  context 'instance' do
+  describe 'status' do
 
-    it 'has a value, and status accessor' do
-      @checker.value.should eql( @value )
-      @checker.status.should be_nil
-    end
+    context 'pass' do
 
-    describe 'status' do
-
-      context 'pass' do
-
-        it 'passes if it can execute a query against the database' do
-          ActiveRecord::Base.connection.stub!( :execute )
-          @checker = StatusCat::Checkers::ActiveRecordChecker.new
-          @checker.status.should be_nil
-        end
-
+      it 'passes if it can execute a query against the database' do
+        ActiveRecord::Base.connection.stub!( :execute )
+        @checker = StatusCat::Checkers::ActiveRecordChecker.new
+        @checker.status.should be_nil
       end
 
-      context 'fail' do
+    end
 
-        it 'returns an error message if it fails to query the database' do
-          ActiveRecord::Base.connection.should_receive( :execute ).and_raise( @fail )
-          @checker = StatusCat::Checkers::ActiveRecordChecker.new
-          @checker.status.to_s.should eql( @fail )
-        end
+    context 'fail' do
 
+      it 'returns an error message if it fails to query the database' do
+        ActiveRecord::Base.connection.should_receive( :execute ).and_raise( @fail )
+        @checker = StatusCat::Checkers::ActiveRecordChecker.new
+        @checker.status.to_s.should eql( @fail )
       end
 
     end

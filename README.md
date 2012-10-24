@@ -19,7 +19,6 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Add shared spec for 'behave like a checker'
 
 * Name derived from class - checker
 * Checker factory method
