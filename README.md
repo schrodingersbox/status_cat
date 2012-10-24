@@ -20,7 +20,6 @@ This engine makes monitoring the status of your Rails environment easier
 ## TODO
 
 
-* Name derived from class - checker
 * Checker factory method
 * Extensible statuses
 

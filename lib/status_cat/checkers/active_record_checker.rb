@@ -13,7 +13,7 @@ module StatusCat
       end
 
       def config
-        return YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
+        YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
       end
 
     end

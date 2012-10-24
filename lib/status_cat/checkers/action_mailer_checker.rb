@@ -22,7 +22,7 @@ module StatusCat
       end
 
       def config
-        return ActionMailer::Base.smtp_settings
+        ActionMailer::Base.smtp_settings
       end
 
     end
