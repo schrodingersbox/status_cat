@@ -1,6 +1,6 @@
 # StatusCat::Checker factory
 
-class StatusCat::Factory
+class StatusCat::Status
 
   def self.all
     return [
@@ -8,10 +8,5 @@ class StatusCat::Factory
       StatusCat::Checkers::ActiveRecordChecker.new
     ]
   end
-
-  def self.check( name )
-    ( 'StatusCat::Checkers::' + name.to_s.classify + 'Checker' ).constantize.new
-  end
-
 
 end

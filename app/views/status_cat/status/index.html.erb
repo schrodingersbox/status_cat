@@ -7,7 +7,7 @@
             <th><%= t( :value, :scope => :status_cat ) %></th>
             <th><%= t( :status, :scope => :status_cat ) %></th>
         </tr>
-        <% StatusCat::Factory.all.each do |checker| %>
+        <% StatusCat::Status.all.each do |checker| %>
             <tr>
                 <td><%= checker.name %></td>
                 <td><%= checker.value %></td>
