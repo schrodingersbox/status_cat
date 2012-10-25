@@ -4,12 +4,20 @@ describe StatusCat::Checkers::ActiveRecordChecker do
 
   before( :each ) do
     @checker = StatusCat::Checkers::ActiveRecordChecker.new
-    @value = "#{@checker.config[ 'adapter' ]}:#{@checker.config[ 'username' ]}@#{@checker.config[ 'database' ]}"
-    @fail = 'This is only a test'
   end
 
-  it_should_behave_like 'a StatusCat::Checker' do
+  it_should_behave_like 'a status checker' do
     let( :checker ) { @checker }
+  end
+
+  it 'provides configuration' do
+    expected = YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
+    @checker.config.should eql( expected )
+  end
+
+  it 'constructs a value from the configuration' do
+    expected = "#{@checker.config[ 'adapter' ]}:#{@checker.config[ 'username' ]}@#{@checker.config[ 'database' ]}"
+    @checker.value.should eql( expected )
   end
 
   describe 'status' do
@@ -27,9 +35,10 @@ describe StatusCat::Checkers::ActiveRecordChecker do
     context 'fail' do
 
       it 'returns an error message if it fails to query the database' do
-        ActiveRecord::Base.connection.should_receive( :execute ).and_raise( @fail )
+        fail = 'This is only a test'
+        ActiveRecord::Base.connection.should_receive( :execute ).and_raise( fail )
         @checker = StatusCat::Checkers::ActiveRecordChecker.new
-        @checker.status.to_s.should eql( @fail )
+        @checker.status.to_s.should eql( fail )
       end
 
     end

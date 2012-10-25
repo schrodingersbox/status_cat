@@ -4,16 +4,19 @@ describe StatusCat::Checkers::ActionMailerChecker do
 
   before( :each ) do
     @checker = StatusCat::Checkers::ActionMailerChecker.new
-    @value = "#{@checker.config[ :address ]}:#{@checker.config[ :port ]}"
-    @fail = 'This is only a test'
   end
 
-  it_should_behave_like 'a StatusCat::Checker' do
+  it_should_behave_like 'a status checker' do
     let( :checker ) { @checker }
   end
 
   it 'provides configuration' do
     @checker.config.should eql( ActionMailer::Base.smtp_settings )
+  end
+
+  it 'constructs a value from the configuration' do
+    expected = "#{@checker.config[ :address ]}:#{@checker.config[ :port ]}"
+    @checker.value.should eql( expected )
   end
 
   describe 'status' do
@@ -43,9 +46,10 @@ describe StatusCat::Checkers::ActionMailerChecker do
     context 'fail' do
 
       it 'returns an error message if it can not make an SMTP connection' do
-        Net::SMTP.should_receive( :start ).and_raise( @fail )
+        fail = 'This is only a test'
+        Net::SMTP.should_receive( :start ).and_raise( fail )
         @checker = StatusCat::Checkers::ActionMailerChecker.new
-        @checker.status.to_s.should eql( @fail )
+        @checker.status.to_s.should eql( fail )
       end
 
     end

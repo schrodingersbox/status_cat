@@ -1,4 +1,4 @@
-shared_examples_for 'a StatusCat::Checker' do
+shared_examples_for 'a status checker' do
 
   it 'inherits from StatusCat::Checker' do
     checker.should be_a_kind_of( StatusCat::Checkers::Base )

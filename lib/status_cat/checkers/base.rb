@@ -3,11 +3,9 @@
 module StatusCat
   module Checkers
     class Base
-      attr_reader :value, :status
+      extend ActiveSupport::DescendantsTracker
 
-      def self.factory( name )
-        ( 'StatusCat::Checkers::' + name.to_s.classify + 'Checker' ).constantize.new
-      end
+      attr_reader :value, :status
 
       def name
         return self.class.to_s.split( '::' ).last.gsub( /Checker$/, '' ).underscore.to_sym
