@@ -1,7 +1,6 @@
 module StatusCat
   module Checkers
-
-    class ActionMailerChecker < StatusCat::Checker
+    class ActionMailerChecker < Base
 
       def initialize
         @value = "#{config[ :address ]}:#{config[ :port ]}"
@@ -26,6 +25,5 @@ module StatusCat
       end
 
     end
-
   end
 end

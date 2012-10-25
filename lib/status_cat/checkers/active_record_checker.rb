@@ -1,8 +1,6 @@
 module StatusCat
-
   module Checkers
-
-    class ActiveRecordChecker < StatusCat::Checker
+    class ActiveRecordChecker < Base
 
       def initialize
         @value = "#{config[ 'adapter' ]}:#{config[ 'username' ]}@#{config[ 'database' ]}"
@@ -17,7 +15,5 @@ module StatusCat
       end
 
     end
-
   end
-
 end

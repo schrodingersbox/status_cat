@@ -1,7 +1,7 @@
 shared_examples_for 'a StatusCat::Checker' do
 
   it 'inherits from StatusCat::Checker' do
-    checker.should be_a_kind_of( StatusCat::Checker )
+    checker.should be_a_kind_of( StatusCat::Checkers::Base )
   end
 
   it 'has a name attribute reader' do

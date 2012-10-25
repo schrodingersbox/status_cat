@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe StatusCat::Checker do
+describe StatusCat::Checkers::Base do
 
   before( :each ) do
-    @checker = StatusCat::Checker.new
+    @checker = StatusCat::Checkers::Base.new
   end
 
   it 'generates a symbolized class name' do
-    @checker.name.should be( :"" )
+    @checker.name.should be( :base )
   end
 
   it 'has a value and status accessor' do
