@@ -20,16 +20,14 @@ This engine makes monitoring the status of your Rails environment easier
 ## TODO
 
 
-* Extensible statuses
-
-* Add memory checker with externally configurable limit
-
 * Status controller / view / helper
 * Red/green for cell based on pass/fail - no css for email friendliness
 * Status mailer
 
 * Rake task to run status checks and output to console
 * Rake task to run status checks and email on failure, suitable for crons
+
+* Add memory checker with externally configurable limit
 
 * Write RDoc
   * General checker concept

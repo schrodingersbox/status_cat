@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe StatusCat::Checkers::ActiveRecordChecker do
+describe StatusCat::Checkers::ActiveRecord do
 
   before( :each ) do
-    @checker = StatusCat::Checkers::ActiveRecordChecker.new
+    @checker = StatusCat::Checkers::ActiveRecord.new
   end
 
   it_should_behave_like 'a status checker' do
@@ -26,7 +26,7 @@ describe StatusCat::Checkers::ActiveRecordChecker do
 
       it 'passes if it can execute a query against the database' do
         ActiveRecord::Base.connection.stub!( :execute )
-        @checker = StatusCat::Checkers::ActiveRecordChecker.new
+        @checker = StatusCat::Checkers::ActiveRecord.new
         @checker.status.should be_nil
       end
 
@@ -37,7 +37,7 @@ describe StatusCat::Checkers::ActiveRecordChecker do
       it 'returns an error message if it fails to query the database' do
         fail = 'This is only a test'
         ActiveRecord::Base.connection.should_receive( :execute ).and_raise( fail )
-        @checker = StatusCat::Checkers::ActiveRecordChecker.new
+        @checker = StatusCat::Checkers::ActiveRecord.new
         @checker.status.to_s.should eql( fail )
       end
 

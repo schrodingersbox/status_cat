@@ -8,7 +8,7 @@ module StatusCat
       attr_reader :value, :status
 
       def name
-        return self.class.to_s.split( '::' ).last.gsub( /Checker$/, '' ).underscore.to_sym
+        return self.class.to_s.split( '::' ).last.underscore.to_sym
       end
 
     protected

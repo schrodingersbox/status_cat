@@ -5,7 +5,7 @@ shared_examples_for 'a status checker' do
   end
 
   it 'has a name attribute reader' do
-    expected = checker.class.to_s.split( '::' ).last.gsub( /Checker$/, '' ).underscore.to_sym
+    expected = checker.class.to_s.split( '::' ).last.underscore.to_sym
     checker.name.should eql( expected )
   end
 

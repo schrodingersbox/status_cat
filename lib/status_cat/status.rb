@@ -1,4 +1,4 @@
-# StatusCat::Checker factory
+# StatusCat::Status
 
 class StatusCat::Status
 
@@ -13,7 +13,7 @@ class StatusCat::Status
   end
 
   def self.factory( name )
-    ( 'StatusCat::Checkers::' + name.to_s.classify + 'Checker' ).constantize.new
+    ( 'StatusCat::Checkers::' + name.to_s.classify ).constantize.new
   end
 
 end

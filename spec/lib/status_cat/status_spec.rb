@@ -42,7 +42,7 @@ describe StatusCat::Status do
     end
 
     it 'returns a single checker when given a single symbolic name' do
-      StatusCat::Status.check( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecordChecker )
+      StatusCat::Status.check( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
     end
 
     it 'returns an array of checkers when given an array of symbolic name' do
@@ -54,8 +54,8 @@ describe StatusCat::Status do
   end
 
   it '::factory constructs a checker given its symbolic name' do
-    StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailerChecker )
-    StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecordChecker )
+    StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailer )
+    StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
   end
 
 end
