@@ -4,7 +4,7 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## Testing
 
-    `rspec spec && open coverage/index.html`
+    `rake spec-cat:coverage`
 
 ## Reference
 
@@ -20,8 +20,6 @@ This engine makes monitoring the status of your Rails environment easier
 ## TODO
 
 
-* Status controller / view / helper
-* Red/green for cell based on pass/fail - no css for email friendliness
 * Status mailer
 
 * Rake task to run status checks and output to console

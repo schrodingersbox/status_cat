@@ -15,7 +15,7 @@ describe StatusCat::Checkers::Base do
     @checker.status.should be_nil
   end
 
-  describe 'fail_on_exception' do
+  describe '#fail_on_exception' do
 
     it 'returns an exception if raised from the block given' do
       error = 'test'

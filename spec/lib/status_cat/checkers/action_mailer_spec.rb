@@ -19,7 +19,7 @@ describe StatusCat::Checkers::ActionMailer do
     @checker.value.should eql( expected )
   end
 
-  describe 'status' do
+  describe '#status' do
 
     before( :each ) do
       ::ActionMailer::Base.delivery_method = :smtp

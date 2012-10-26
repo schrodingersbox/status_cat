@@ -1,18 +1,4 @@
 <div class="status_cat">
-    <h1><%= t( :h1, :scope => :status_cat ) %></h1>
-
-    <table border="1">
-        <tr>
-            <th><%= t( :name, :scope => :status_cat ) %></th>
-            <th><%= t( :value, :scope => :status_cat ) %></th>
-            <th><%= t( :status, :scope => :status_cat ) %></th>
-        </tr>
-        <% StatusCat::Status.all.each do |checker| %>
-            <tr>
-                <td><%= checker.name %></td>
-                <td><%= checker.value %></td>
-                <td><%= checker.status %></td>
-            </tr>
-        <% end %>
-    </table>
+  <%= status_title %>
+  <%= status_table( StatusCat::Status.all ) %>
 </div>

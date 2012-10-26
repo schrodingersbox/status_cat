@@ -20,7 +20,7 @@ describe StatusCat::Checkers::ActiveRecord do
     @checker.value.should eql( expected )
   end
 
-  describe 'status' do
+  describe '#status' do
 
     context 'pass' do
 
