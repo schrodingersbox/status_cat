@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe StatusCat::Status do
 
+  #############################################################################
+  # ::all
+  #############################################################################
+
   describe '::all' do
 
     before( :each ) do
@@ -20,6 +24,10 @@ describe StatusCat::Status do
     end
 
   end
+
+  #############################################################################
+  # ::check
+  #############################################################################
 
   describe '::check' do
 
@@ -53,9 +61,29 @@ describe StatusCat::Status do
 
   end
 
-  it '::factory constructs a checker given its symbolic name' do
-    StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailer )
-    StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
+  #############################################################################
+  # ::factory
+  #############################################################################
+
+  describe '::factory' do
+
+    it 'constructs a checker given its symbolic name' do
+      StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailer )
+      StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
+    end
+
+  end
+
+  #############################################################################
+  # ::report
+  #############################################################################
+
+  describe '::report' do
+
+    it 'generates a text status report' do
+      StatusCat::Status.report.should eql_file( 'spec/data/report.txt' )
+    end
+
   end
 
 end

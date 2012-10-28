@@ -5,10 +5,16 @@ module StatusCat
     class Base
       extend ActiveSupport::DescendantsTracker
 
+      FORMAT = "%s | %s | %s\n"
+
       attr_reader :value, :status
 
       def name
-        return self.class.to_s.split( '::' ).last.underscore.to_sym
+        self.class.to_s.split( '::' ).last.underscore.to_sym
+      end
+
+      def to_s( format = FORMAT )
+        sprintf( format, name, value, status )
       end
 
     protected

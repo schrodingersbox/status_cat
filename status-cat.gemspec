@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = StatusCat::VERSION
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']
-  s.homepage    = 'https://github.com/schrodingersbox/status_cat'
+  s.homepage    = 'https://github.com/schrodingersbox/status-cat'
   s.summary     = 'Rails engine for checking system health'
   s.description = ''
 

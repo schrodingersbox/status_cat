@@ -18,5 +18,5 @@ gem "jquery-rails"
 
 group :development, :test do
   gem 'simplecov', '0.6.4', :require => false
-  gem 'spec-cat', '0.0.7', :git => 'https://github.com/schrodingersbox/spec-cat.git'
+  gem 'spec-cat', '0.0.9', :git => 'https://github.com/schrodingersbox/spec-cat.git'
 end

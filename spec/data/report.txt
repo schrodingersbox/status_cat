@@ -1,0 +1,7 @@
+-------------------------------------------
+         Name |                    Value | Status
+-------------------------------------------
+action_mailer |    smtp.sendgrid.net:587 | 
+active_record | sqlite3:@db/test.sqlite3 | 
+dummy_checker |                    dummy | 
+-------------------------------------------
