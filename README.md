@@ -24,8 +24,6 @@ This engine makes monitoring the status of your Rails environment easier
 
 * Helper to determine if any checkers in a list failed
 
-* Make StatusCat::Status.report less gross
-
 * Dynamically create rake tasks for each checker
 
 * Add memory checker with externally configurable limit

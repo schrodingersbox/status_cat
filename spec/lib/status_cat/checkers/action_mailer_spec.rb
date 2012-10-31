@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe StatusCat::Checkers::ActionMailer do
 
-  before( :each ) do
-    @checker = StatusCat::Checkers::ActionMailer.new
+  before( :all ) do
+    @checker = StatusCat::Checkers::ActionMailer.new.freeze
   end
 
   it_should_behave_like 'a status checker' do

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe StatusCat::Checkers::ActiveRecord do
 
-  before( :each ) do
-    @checker = StatusCat::Checkers::ActiveRecord.new
+  before( :all ) do
+    @checker = StatusCat::Checkers::ActiveRecord.new.freeze
   end
 
   it_should_behave_like 'a status checker' do
