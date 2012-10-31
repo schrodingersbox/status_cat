@@ -11,12 +11,13 @@ describe StatusCat::Checkers::ActiveRecord do
   end
 
   it 'provides configuration' do
-    expected = YAML::load( ERB.new( IO.read( "#{Rails.root}/config/database.yml" ) ).result )[ Rails.env ]
+    yaml =  YAML::load( ERB.new( IO.read( File.join( Rails.root, 'config', 'database.yml' ) ) ).result )
+    expected = yaml[ Rails.env ].symbolize_keys!
     @checker.config.should eql( expected )
   end
 
   it 'constructs a value from the configuration' do
-    expected = "#{@checker.config[ 'adapter' ]}:#{@checker.config[ 'username' ]}@#{@checker.config[ 'database' ]}"
+    expected = "#{@checker.config[ :adapter ]}:#{@checker.config[ :username ]}@#{@checker.config[ :database ]}"
     @checker.value.should eql( expected )
   end
 

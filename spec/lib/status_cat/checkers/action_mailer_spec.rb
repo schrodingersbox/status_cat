@@ -23,10 +23,6 @@ describe StatusCat::Checkers::ActionMailer do
 
     before( :each ) do
       ::ActionMailer::Base.delivery_method = :smtp
-      ::ActionMailer::Base.smtp_settings  = {
-          :address => 'smtp.sendgrid.net',
-          :port => '587'
-        }
     end
 
     after( :each ) do

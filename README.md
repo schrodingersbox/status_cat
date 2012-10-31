@@ -19,16 +19,12 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Use Base to hold name, value, status i18n strings?
-
-* Test - Raw text status output
-* Test - Rake task to run status checks and output to console
-
-* Helper to determine if any checkers in a list failed
-* Output option for all or just failed
-
 * Status mailer
 * Rake task to run status checks and email on failure, suitable for crons
+
+* Helper to determine if any checkers in a list failed
+
+* Make StatusCat::Status.report less gross
 
 * Dynamically create rake tasks for each checker
 
