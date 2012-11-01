@@ -10,8 +10,7 @@ describe 'coverage' do
   it 'has a spec for every file' do
     [
       'app',
-      'lib/status_cat',
-      'lib/tasks'
+      'lib',
     ].each do |dir|
       Dir.glob( File.join( ENGINE_RAILS_ROOT, dir, '**', '*.{rb,erb,rake}' ) ) do |path|
         path = path.sub( /#{ENGINE_RAILS_ROOT}\//, '' )

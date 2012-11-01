@@ -1,5 +1,3 @@
-# StatusCat::Status
-
 class StatusCat::Status
 
   # Returns an array of instances of all StatusCat::Checkers::Base subclasses

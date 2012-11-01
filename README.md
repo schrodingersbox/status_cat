@@ -28,6 +28,8 @@ This engine makes monitoring the status of your Rails environment easier
 
 * Add memory checker with externally configurable limit
 
+* Access control for StatusCat::Status ... protected class methods suck
+
 * Write RDoc
   * General checker concept
   * How to

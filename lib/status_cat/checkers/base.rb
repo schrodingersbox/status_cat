@@ -1,5 +1,3 @@
-# Base class for all status checkers
-
 module StatusCat
   module Checkers
     class Base
