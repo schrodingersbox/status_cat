@@ -8,19 +8,17 @@ describe StatusCat::Status do
 
   describe '::all' do
 
-    before( :all ) do
-      @all = StatusCat::Status.all.freeze
-    end
+    let( :all ) { StatusCat::Status.all.freeze }
 
     it 'returns an array of all checkers' do
-      @all.should be_an_instance_of( Array )
-      @all.length.should eql( StatusCat::Checkers::Base.descendants.length )
-      @all.each { |checker| checker.should be_a_kind_of( StatusCat::Checkers::Base ) }
+      all.should be_an_instance_of( Array )
+      all.length.should eql( StatusCat::Checkers::Base.descendants.length )
+      all.each { |checker| checker.should be_a_kind_of( StatusCat::Checkers::Base ) }
     end
 
     it 'returns the array in alphabetical order' do
-      expected = @all.sort { |a,b| a.name.to_s <=> b.name.to_s }
-      @all.should eql( expected )
+      expected = all.sort { |a,b| a.name.to_s <=> b.name.to_s }
+      all.should eql( expected )
     end
 
   end

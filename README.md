@@ -19,7 +19,6 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Status mailer
 * Rake task to run status checks and email on failure, suitable for crons
 
 * Null username and password sneaking through action mailer checker
