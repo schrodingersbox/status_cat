@@ -1,7 +1,7 @@
 if Rails.env.test?
   ActionMailer::Base.delivery_method = :test
 else
-  yaml = YAML::load( ERB.new( IO.read( File.join( Rails.root, 'config', 'passwords.yml' ) ) ).result )
+  yaml = YAML::load( IO.read( File.join( Rails.root, 'config', 'passwords.yml' ) ) )
   passwords = HashWithIndifferentAccess.new( yaml[ Rails.env ] )
 
   ActionMailer::Base.delivery_method = :smtp

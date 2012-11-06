@@ -6,7 +6,7 @@ class StatusCat::StatusMailer <  ActionMailer::Base
     @checkers = checkers
 
     config = StatusCat.config
-    mail( :to => config.email_to, :from => config.email_from, :subject => config.email_subject )
+    mail( :to => config.to, :from => config.from, :subject => config.subject )
   end
 
 end

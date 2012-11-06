@@ -2,32 +2,30 @@ require 'spec_helper'
 
 describe StatusCat::Config do
 
-  before( :all ) do
-    @config = StatusCat::Config.instance
-  end
+  let( :config ) { StatusCat::Config.instance }
 
   it 'is a singleton' do
-    @config.should be( StatusCat::Config.instance )
+    config.should be( StatusCat::Config.instance )
   end
 
   describe 'attributes' do
 
-    it 'has an email_from accessor' do
-      from = 'from@schrodingersbox.com'
-      @config.email_from = from
-      @config.email_from.should eql( from )
+    it 'has a #from accessor' do
+      config.from.should_not be_nil
+      config.from = config.from
+      config.from.should eql( config.from )
     end
 
-    it 'has an email_to accessor' do
-      to = 'to@schrodingersbox.com'
-      @config.email_to = to
-      @config.email_to.should eql( to )
+    it 'has a #to accessor' do
+      config.to.should_not be_nil
+      config.to = config.to
+      config.to.should eql( config.to )
     end
 
-    it 'has an email_subject accessor' do
-      subject = 'This is only a test'
-      @config.email_subject = subject
-      @config.email_subject.should eql( subject )
+    it 'has an #subject accessor' do
+      config.subject.should_not be_nil
+      config.subject = config.subject
+      config.subject.should eql( config.subject )
     end
 
   end
