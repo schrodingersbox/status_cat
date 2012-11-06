@@ -22,6 +22,8 @@ This engine makes monitoring the status of your Rails environment easier
 * Status mailer
 * Rake task to run status checks and email on failure, suitable for crons
 
+* Null username and password sneaking through action mailer checker
+
 * Helper to determine if any checkers in a list failed
 
 * Dynamically create rake tasks for each checker

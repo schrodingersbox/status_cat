@@ -1,6 +1,18 @@
-class StatusCat::StatusMailer < ActionMailer::Base
+require 'spec_helper'
 
-  def fail
+describe StatusCat::StatusMailer do
+
+  it 'adds StatusCat::StatusHelper as a template helper'
+
+  describe 'failure message' do
+
+    it 'uses the configured from address'
+
+    it 'uses the configured to address'
+
+    it 'uses the configured subject'
+
+    it 'generates a multipart email with both text and html'
 
   end
 

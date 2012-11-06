@@ -13,7 +13,7 @@ describe 'status-cat rake tasks' do
   describe 'rake status-cat:check' do
 
     it 'puts the status report' do
-      Kernel.should_receive( :puts ).with( StatusCat::Status.report )
+      Kernel.should_receive( :puts ).with( kind_of( String ) )
       @rake[ 'status-cat:check' ].invoke
     end
 

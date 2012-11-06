@@ -14,6 +14,8 @@ module StatusCat
               password       = config[ :password ]
               authentication = config[ :authentication ]
 
+              # TODO nil user_name and password were a pass.  Tighten down checks here
+
               Net::SMTP.start( address, port, domain, user_name, password, authentication ) { |smtp| }
             end
           end

@@ -66,4 +66,43 @@ describe StatusCat::StatusHelper do
 
   end
 
+  describe '#status_report' do
+
+    it 'generates a text status report' do
+      all = StatusCat::Status.all
+      helper.status_report( all ).should eql_file( 'spec/data/report.txt' )
+    end
+
+  end
+
+  describe '#status_report_format' do
+
+    it 'generates a format string and length based on the max length of the given checkers' do
+      expected = [ "%13s | %24s | %0s\n", 43 ]
+      helper.status_report_format( StatusCat::Status.all ).should eql( expected )
+    end
+
+  end
+
+  describe '#status_report_header' do
+
+    before( :all ) do
+      @name = I18n.t( :name, :scope => :status_cat ).freeze
+      @value = I18n.t( :value, :scope => :status_cat ).freeze
+      @status = I18n.t( :status, :scope => :status_cat ).freeze
+    end
+
+    it 'generates a header' do
+      expected = sprintf( StatusCat::Checkers::Base::FORMAT, @name, @value, @status )
+      helper.status_report_header.should eql( expected )
+    end
+
+    it 'accepts a format string' do
+      format = '%s * %s * %s'
+      expected = sprintf( format, @name, @value, @status )
+      helper.status_report_header( format ).should eql( expected )
+    end
+
+  end
+
 end
