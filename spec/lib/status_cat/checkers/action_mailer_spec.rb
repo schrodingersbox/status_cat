@@ -15,6 +15,10 @@ describe StatusCat::Checkers::ActionMailer do
     checker.value.should eql( expected )
   end
 
+  #############################################################################
+  # status
+  #############################################################################
+
   describe '#status' do
 
     before( :each ) do
@@ -24,6 +28,10 @@ describe StatusCat::Checkers::ActionMailer do
     after( :each ) do
       ::ActionMailer::Base.delivery_method = :test
     end
+
+    #############################################################################
+    # pass
+    #############################################################################
 
     context 'pass' do
 
@@ -35,13 +43,26 @@ describe StatusCat::Checkers::ActionMailer do
 
     end
 
+    #############################################################################
+    # fail
+    #############################################################################
+
     context 'fail' do
 
+      let( :exception ) { Net::SMTPAuthenticationError.new }
+
       it 'returns an error message if it can not make an SMTP connection' do
-        fail = 'This is only a test'
-        Net::SMTP.should_receive( :start ).and_raise( fail )
+        Net::SMTP.should_receive( :start ).and_raise( exception )
         checker = StatusCat::Checkers::ActionMailer.new
-        checker.status.to_s.should eql( fail )
+        checker.status.should be( exception )
+      end
+
+      it 'returns an error message if it can not send a message' do
+        smtp = Object.new
+        smtp.stub!( :send_message ).and_raise( exception )
+        Net::SMTP.should_receive( :start ).and_yield( smtp )
+        checker = StatusCat::Checkers::ActionMailer.new
+        checker.status.should be( exception )
       end
 
     end

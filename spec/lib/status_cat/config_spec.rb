@@ -16,6 +16,12 @@ describe StatusCat::Config do
       config.from.should eql( config.from )
     end
 
+    it 'has a #noreply accessor' do
+      config.noreply.should_not be_nil
+      config.noreply = config.noreply
+      config.noreply.should eql( config.noreply )
+    end
+
     it 'has a #to accessor' do
       config.to.should_not be_nil
       config.to = config.to
