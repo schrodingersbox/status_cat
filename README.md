@@ -19,14 +19,18 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
-* Rake task to run status checks and email on failure, suitable for crons
-
-
 * Helper to determine if any checkers in a list failed
+* Rake task to run status checks and email on failure, suitable for crons
 
 * Dynamically create rake tasks for each checker
 
 * Add memory checker with externally configurable limit
+* Add disk space checker with externally configurable limit
+
+* Add ability to configure "all"
+* Add Zencoder checker
+* Add NewRelic checker
+
 
 * Access control for StatusCat::Status ... protected class methods suck
 

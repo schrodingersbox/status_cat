@@ -7,10 +7,10 @@ else
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings  = {
     :address => 'smtp.sendgrid.net',
-    :port => '25',
+    :port => '587',
     :domain => 'schrodingersbox.com',
     :authentication => :plain,
-    :user_name => passwords[ :sendgrid ][ :username ],
+    :user_name => passwords[ :sendgrid ][ :user_name ],
     :password => passwords[ :sendgrid ][ :password ]
   }
 end
