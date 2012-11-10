@@ -12,7 +12,7 @@ module StatusCat
       end
 
       def to_s( format = FORMAT )
-        sprintf( format, name, value, status )
+        sprintf( format, name, value, status || I18n.t( :ok, :scope => :status_cat ) )
       end
 
     protected

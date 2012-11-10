@@ -1,7 +1,7 @@
 --------------------------------------------------
          Name |                    Value | Status
 --------------------------------------------------
-action_mailer |             localhost:25 | 
-active_record | sqlite3:@db/test.sqlite3 | 
-dummy_checker |                    dummy | 
+action_mailer |             localhost:25 |   OK
+active_record | sqlite3:@db/test.sqlite3 |   OK
+dummy_checker |                    dummy | fail
 --------------------------------------------------

@@ -2,6 +2,19 @@
 
 This engine makes monitoring the status of your Rails environment easier
 
+## Usage
+
+### Integration
+
+Add to config/routes.rb...
+
+  mount StatusCat::Engine => '/status-cat'
+
+Add to config/application.rb...
+
+  Dir[Rails.root + 'app/checkers/**/*.rb'].each { |path| require path }
+
+
 ## Testing
 
     `rake spec-cat:coverage`
@@ -19,10 +32,11 @@ This engine makes monitoring the status of your Rails environment easier
 
 ## TODO
 
+* Add ability to configure "all"
+
 * Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
 
-* Add ability to configure "all"
 
 * Add Zencoder checker
 * Add NewRelic checker

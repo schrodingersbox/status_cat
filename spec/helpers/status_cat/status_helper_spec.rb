@@ -6,6 +6,7 @@ describe StatusCat::StatusHelper do
   let( :name ) { t( :name, :scope => :status_cat ).freeze }
   let( :value ) { t( :value, :scope => :status_cat ).freeze }
   let( :status ) { t( :status, :scope => :status_cat ).freeze }
+  let( :ok ) { t( :ok, :scope => :status_cat ).freeze }
 
   describe '#status_header' do
 
@@ -19,14 +20,14 @@ describe StatusCat::StatusHelper do
   describe '#status_row' do
 
     it 'generates a status table row' do
-      expected = "<tr><td style=\"#{helper.status_style( checker )}\">#{checker.name}</td><td>#{checker.value}</td><td></td></tr>"
+      expected = "<tr><td style=\"#{helper.status_style( checker )}\">#{checker.name}</td><td>#{checker.value}</td><td>#{ok}</td></tr>"
       helper.status_row( checker ).should eql( expected )
     end
 
     it 'uses status_style to style the status column' do
       style = :gangnam
       helper.should_receive( :status_style ).and_return( style )
-      expected = "<tr><td style=\"#{style}\">#{checker.name}</td><td>#{checker.value}</td><td></td></tr>"
+      expected = "<tr><td style=\"#{style}\">#{checker.name}</td><td>#{checker.value}</td><td>#{ok}</td></tr>"
       helper.status_row( checker ).should eql( expected )
     end
 
@@ -76,7 +77,7 @@ describe StatusCat::StatusHelper do
   describe '#status_report_format' do
 
     it 'generates a format string and length based on the max length of the given checkers' do
-      expected = [ "%13s | %24s | %0s\n", 43 ]
+      expected = [ "%13s | %24s | %4s\n", 47 ]
       helper.status_report_format( StatusCat::Status.all ).should eql( expected )
     end
 

@@ -16,7 +16,7 @@ module StatusCat::StatusHelper
     content_tag( :tr ) do
       concat content_tag( :td, checker.name, :style => status_style( checker ) )
       concat content_tag( :td, checker.value )
-      concat content_tag( :td, checker.status )
+      concat content_tag( :td, checker.status || t( :ok, :scope => :status_cat ) )
     end
   end
 

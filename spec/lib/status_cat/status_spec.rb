@@ -100,15 +100,20 @@ describe StatusCat::Status do
 
   describe '::failed' do
 
+    before( :each ) do
+      @pass = StatusCat::Checkers::Base.new
+
+      @fail = StatusCat::Checkers::Base.new
+      @fail.stub!( :status ).and_return( :fail )
+    end
+
     it 'returns only failed checkers from ::all' do
-      pass = StatusCat::Checkers::Base.new
-      fail = StatusCat::Checkers::Base.new
-      fail.stub!( :status ).and_return( :fail )
-      StatusCat::Status.should_receive( :all ).and_return( [ pass, fail ] )
-      StatusCat::Status.failed.should eql( [ fail ] )
+      StatusCat::Status.should_receive( :all ).and_return( [ @pass, @fail ] )
+      StatusCat::Status.failed.should eql( [ @fail ] )
     end
 
     it 'returns an empty list if all checkers pass' do
+      StatusCat::Status.should_receive( :all ).and_return( [ @pass ] )
       StatusCat::Status.failed.should eql( [] )
     end
 
