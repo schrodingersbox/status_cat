@@ -19,5 +19,14 @@ describe 'status-cat rake tasks' do
 
   end
 
+  describe 'rake status-cat:cron' do
+
+    it 'calls StatusCat::Status.cron' do
+      StatusCat::Status.should_receive( :cron )
+      @rake[ 'status-cat:cron' ].invoke
+    end
+
+  end
+
 
 end

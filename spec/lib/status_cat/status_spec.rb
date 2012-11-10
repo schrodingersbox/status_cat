@@ -60,6 +60,28 @@ describe StatusCat::Status do
   end
 
   #############################################################################
+  # ::cron
+  #############################################################################
+
+  describe '::cron' do
+
+    it 'delivers email if ::failed is not empty' do
+      failed = [ StatusCat::Checkers::Base.new ]
+      mail =  StatusCat::StatusMailer.failure( failed )
+      StatusCat::Status.should_receive( :failed ).and_return( failed )
+      StatusCat::StatusMailer.should_receive( :failure ).with( failed ).and_return( mail )
+      StatusCat::Status.cron
+    end
+
+    it 'does not email when ::failed is empty' do
+      StatusCat::Status.should_receive( :failed ).and_return( [] )
+      StatusCat::StatusMailer.should_not_receive( :failure )
+      StatusCat::Status.cron
+    end
+
+  end
+
+  #############################################################################
   # ::factory
   #############################################################################
 
@@ -68,6 +90,26 @@ describe StatusCat::Status do
     it 'constructs a checker given its symbolic name' do
       StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailer )
       StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
+    end
+
+  end
+
+  #############################################################################
+  # ::failed
+  #############################################################################
+
+  describe '::failed' do
+
+    it 'returns only failed checkers from ::all' do
+      pass = StatusCat::Checkers::Base.new
+      fail = StatusCat::Checkers::Base.new
+      fail.stub!( :status ).and_return( :fail )
+      StatusCat::Status.should_receive( :all ).and_return( [ pass, fail ] )
+      StatusCat::Status.failed.should eql( [ fail ] )
+    end
+
+    it 'returns an empty list if all checkers pass' do
+      StatusCat::Status.failed.should eql( [] )
     end
 
   end

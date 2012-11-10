@@ -6,4 +6,9 @@ namespace :'status-cat' do
     Kernel.puts status_report( StatusCat::Status.all )
   end
 
+  desc 'Run all checkers and email failures'
+  task :cron => :environment do
+    StatusCat::Status.cron
+  end
+
 end
