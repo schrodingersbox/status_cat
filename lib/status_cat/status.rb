@@ -1,8 +1,8 @@
 class StatusCat::Status
 
-  # Returns an array of instances of all StatusCat::Checkers::Base subclasses
+  # Returns an array of instances of StatusCat::Checkers::Base subclasses
   def self.all
-    StatusCat::Checkers::Base.descendants.sort { |a,b| a.to_s <=> b.to_s }.map { |c| c.new }
+    StatusCat::Config.instance.enabled.map { |name| factory( name ) }
   end
 
   # By default, returns all checkers
@@ -19,7 +19,6 @@ class StatusCat::Status
     checkers = self.failed
     StatusCat::StatusMailer.failure( checkers ).deliver unless checkers.empty?
   end
-
 
   # Constructs a checker instance given it's name
   def self.factory( name )

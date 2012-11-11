@@ -37,10 +37,8 @@ Add to config/application.rb...
 * Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
 
-
-* Add Zencoder checker
-* Add NewRelic checker
-
+* Add Zencoder checker?
+* Add NewRelic checker?
 
 * Dynamically create rake tasks for each checker
 * Access control for StatusCat::Status ... protected class methods suck
@@ -49,6 +47,7 @@ Add to config/application.rb...
   * General checker concept
   * How to
     * Integrate into app as action
+    * Configure
     * Run rake tasks
     * Periodic check and email on failure
   * Existing checkers

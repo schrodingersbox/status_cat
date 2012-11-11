@@ -10,6 +10,12 @@ describe StatusCat::Config do
 
   describe 'attributes' do
 
+    it 'has an #enabled accessor' do
+      config.enabled.should_not be_nil
+      config.enabled = config.enabled
+      config.enabled.should eql( config.enabled )
+    end
+
     it 'has a #from accessor' do
       config.from.should_not be_nil
       config.from = config.from
@@ -32,6 +38,19 @@ describe StatusCat::Config do
       config.subject.should_not be_nil
       config.subject = config.subject
       config.subject.should eql( config.subject )
+    end
+
+  end
+
+  describe '#initialize' do
+
+    it 'defaults the #enabled list to all StatusCat::Checkers::Base subclasses' do
+      descendants = StatusCat::Checkers::Base.descendants
+      StatusCat::Checkers::Base.should_receive( :descendants ).and_return( descendants )
+
+      config.enabled = nil
+      config.send( :initialize )
+      config.enabled.should_not be_nil
     end
 
   end

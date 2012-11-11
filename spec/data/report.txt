@@ -3,5 +3,5 @@
 --------------------------------------------------
 action_mailer |             localhost:25 |   OK
 active_record | sqlite3:@db/test.sqlite3 |   OK
-dummy_checker |                    dummy | fail
+        dummy |                    dummy | fail
 --------------------------------------------------

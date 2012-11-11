@@ -1,6 +1,6 @@
 module StatusCat
   module Checkers
-    class DummyChecker < Base
+    class Dummy < Base
       def initialize
         @value = 'dummy'
         @status = 'fail'
