@@ -32,8 +32,6 @@ Add to config/application.rb...
 
 ## TODO
 
-* Add ability to configure "all"
-
 * Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
 
