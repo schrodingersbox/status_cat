@@ -1,23 +1,73 @@
 # schrodingersbox/status-cat README
 
-This engine makes monitoring the status of your Rails environment easier
+This engine makes monitoring the status of your Rails environment easier.
 
-## Usage
+## Getting Started
 
-### Integration
+1. Add this to your `Gemfile`
 
-Add to config/routes.rb...
+		gem 'status-cat', :git => 'https://github.com/schrodingersbox/status-cat.git'    
 
-  mount StatusCat::Engine => '/status-cat'
+2. Add this to your `config/routes.rb`
 
-Add to config/application.rb...
+		mount StatusCat::Engine => '/status-cat'
 
-  Dir[Rails.root + 'app/checkers/**/*.rb'].each { |path| require path }
+3. Restart your Rails server
 
+4. Run `rake status-cat:check` for a text status report
 
-## Testing
+5.  Visit http://yourapp/status-cat in a browser for an HTML status report
 
-    `rake spec-cat:coverage`
+## How To
+
+### Configure Enabled Checkers
+
+By default, all subclasses of StatusCat::Checkers::Base will be run.  Do the following if you would like to limit or reorder the set of checkers
+
+Create or add to `config/initializers/status_cat.rb`
+
+    StatusCat.configure do |config|
+      config.enabled = [ :action_mailer, :active_record ]
+    end
+
+### Configure Email Settings
+
+Create or add to `config/initializers/status_cat.rb`
+
+    StatusCat.configure do |config|
+      config.noreply = 'noreply@schrodingersbox.com'
+      config.to = 'ops@schrodingersbox.com'
+      config.from = 'ops@schrodingersbox.com'
+      config.subject = "#{Rails.env.upcase} StatusCat Failure"
+    end
+
+### Run Status Checks From A Cron
+
+1. Run `rake status-cat:cron` from a cron job or other scheduling system.
+
+PLEASE NOTE: The :action_mailer checker will attempt to send a test email to your `StatusCat.config.noreply` email address.  This could cause unwanted spam or incur charges if you're using a metered mail transfer agent, like SendGrid.
+
+### Add New Checkers
+
+You can place new checkers anywhere you like, but `app/checkers` is a nice place.
+
+1.  Add the following to `config/application.rb`
+
+    	Dir[Rails.root + 'app/checkers/**/*.rb'].each { |path| require path }
+
+2.  Create a new subclass of `StatusCat::Checkers::Base` that sets `@value` and `@status` instance variables.
+
+	    module StatusCat
+	      module Checkers
+	        class Dummy < Base
+	          def initialize
+	            @value = 'dummy'
+	            @status = 'fail'
+	          end
+	        end
+	      end
+	    end
+
 
 ## Reference
 
@@ -34,7 +84,6 @@ Add to config/application.rb...
 
 * Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
-
 * Add Zencoder checker?
 * Add NewRelic checker?
 
@@ -43,13 +92,6 @@ Add to config/application.rb...
 
 * Write RDoc
   * General checker concept
-  * How to
-    * Integrate into app as action
-    * Configure
-    * Run rake tasks
-    * Periodic check and email on failure
-  * Existing checkers
-  * How to add a new checker
   * Shared spec
 
 * Publish as gem
