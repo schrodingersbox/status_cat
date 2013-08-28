@@ -80,6 +80,11 @@ You can place new checkers anywhere you like, but `app/checkers` is a nice place
  * [config.reload_plugins = true only works in environment.rb](https://rails.lighthouseapp.com/projects/8994/tickets/2324-configreload_plugins-true-only-works-in-environmentrb?spam=1)
  * [describe vs. context in rspec](http://lmws.net/describe-vs-context-in-rspec)
 
+## History
+
+Version 0.0.2 = Rails 3 compatible
+Version 0.0.3 = Rails 4 compatible
+
 ## TODO
 
 * Add memory checker with externally configurable limit
