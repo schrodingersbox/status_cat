@@ -1,12 +1,16 @@
 require 'singleton'
 
-class StatusCat::Config
-  include Singleton
+module StatusCat
 
-  attr_accessor :enabled, :from, :to, :subject, :noreply
+  class Config
+    include Singleton
 
-  def initialize
-    @enabled = StatusCat::Checkers::Base.descendants.map { |klass| klass.new.name }.sort
+    attr_accessor :enabled, :from, :to, :subject, :noreply
+
+    def initialize
+      @enabled = StatusCat::Checkers::Base.descendants.map { |klass| klass.new.name }.sort
+    end
+
   end
 
 end
