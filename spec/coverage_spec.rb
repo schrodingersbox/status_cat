@@ -12,8 +12,8 @@ describe 'coverage' do
       'app',
       'lib',
     ].each do |dir|
-      Dir.glob( File.join( ENGINE_RAILS_ROOT, dir, '**', '*.{rb,erb,rake}' ) ) do |path|
-        path = path.sub( /#{ENGINE_RAILS_ROOT}\//, '' )
+      Dir.glob( File.join( ENGINE_ROOT, dir, '**', '*.{rb,erb,rake}' ) ) do |path|
+        path = path.sub( /#{ENGINE_ROOT}\//, '' )
         path.should have_a_spec
       end
     end

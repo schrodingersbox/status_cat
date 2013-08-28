@@ -95,7 +95,7 @@ Version 0.0.3 = Rails 4 compatible
 * Dynamically create rake tasks for each checker
 * Access control for StatusCat::Status ... protected class methods suck
 
-* Write RDoc
+* Doc
   * General checker concept
   * Shared spec
 
