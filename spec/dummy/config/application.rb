@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require
-require "status-cat"
+require "status_cat"
 
 module Dummy
   class Application < Rails::Application

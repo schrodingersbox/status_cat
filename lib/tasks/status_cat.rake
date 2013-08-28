@@ -1,4 +1,4 @@
-namespace :'status-cat' do
+namespace :status_cat do
 
   desc 'Run all checkers and output results'
   task :check => :environment do

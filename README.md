@@ -1,4 +1,4 @@
-# schrodingersbox/status-cat README
+# schrodingersbox/status_cat README
 
 This engine makes monitoring the status of your Rails environment easier.
 
@@ -6,17 +6,17 @@ This engine makes monitoring the status of your Rails environment easier.
 
 1. Add this to your `Gemfile`
 
-		gem 'status-cat', :git => 'https://github.com/schrodingersbox/status-cat.git'    
+		gem 'status_cat', :git => 'https://github.com/schrodingersbox/status_cat.git'
 
 2. Add this to your `config/routes.rb`
 
-		mount StatusCat::Engine => '/status-cat'
+		mount StatusCat::Engine => '/status_cat'
 
 3. Restart your Rails server
 
-4. Run `rake status-cat:check` for a text status report
+4. Run `rake status_cat:check` for a text status report
 
-5.  Visit http://yourapp/status-cat in a browser for an HTML status report
+5.  Visit http://yourapp/status_cat in a browser for an HTML status report
 
 ## How To
 
@@ -43,7 +43,7 @@ Create or add to `config/initializers/status_cat.rb`
 
 ### Run Status Checks From A Cron
 
-1. Run `rake status-cat:cron` from a cron job or other scheduling system.
+1. Run `rake status_cat:cron` from a cron job or other scheduling system.
 
 PLEASE NOTE: The :action_mailer checker will attempt to send a test email to your `StatusCat.config.noreply` email address.  This could cause unwanted spam or incur charges if you're using a metered mail transfer agent, like SendGrid.
 

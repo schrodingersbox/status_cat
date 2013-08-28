@@ -5,15 +5,15 @@ require 'status_cat/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'status-cat'
+  s.name        = 'status_cat'
   s.version     = StatusCat::VERSION
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']
-  s.homepage    = 'https://github.com/schrodingersbox/status-cat'
+  s.homepage    = 'https://github.com/schrodingersbox/status_cat'
   s.summary     = 'Rails engine for checking system health'
   s.description = ''
 
-  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = Dir['{app,config,db,lib}/**/*'] + ['LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'rails', '~>4.0.0'
