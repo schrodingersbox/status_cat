@@ -10,7 +10,7 @@ module StatusCat::StatusHelper
     end
   end
 
-  # Constructs and HTML table row
+  # Constructs an HTML table row
 
   def status_row( checker )
     content_tag( :tr ) do

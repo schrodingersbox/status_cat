@@ -4,7 +4,7 @@ This engine makes monitoring the status of your Rails environment easier.
 
 ## Getting Started
 
-1. Add this to your `Gemfile`
+1. Add this to your `Gemfile` and `bundle install`
 
 		gem 'status_cat', :git => 'https://github.com/schrodingersbox/status_cat.git'
 
@@ -49,7 +49,7 @@ PLEASE NOTE: The :action_mailer checker will attempt to send a test email to you
 
 ### Add New Checkers
 
-You can place new checkers anywhere you like, but `app/checkers` is a nice place.
+You can place new checkers anywhere you like, but `app/checkers` is the recommended location.
 
 1.  Add the following to `config/application.rb`
 

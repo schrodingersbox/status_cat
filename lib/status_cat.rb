@@ -17,5 +17,4 @@ module StatusCat
     yield config
   end
 
-
 end
