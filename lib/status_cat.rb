@@ -5,7 +5,7 @@ require 'status_cat/status'
 require 'status_cat/checkers/base'
 require 'status_cat/checkers/action_mailer'
 require 'status_cat/checkers/active_record'
-
+require 'status_cat/checkers/stripe'
 
 module StatusCat
 

@@ -77,7 +77,7 @@ describe StatusCat::StatusHelper do
   describe '#status_report_format' do
 
     it 'generates a format string and length based on the max length of the given checkers' do
-      expected = [ "%13s | %24s | %4s\n", 47 ]
+      expected = ["%13s | %24s | %4s\n", 47]
       helper.status_report_format( StatusCat::Status.all ).should eql( expected )
     end
 
