@@ -87,6 +87,8 @@ Version 0.0.3 = Rails 4 compatible
 
 ## TODO
 
+* Modify Stripe checker to count as a fail if Stripe gem is not installed
+
 * Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
 * Add Zencoder checker?

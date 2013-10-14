@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe StatusCat::Checkers::Stripe do
+describe StatusCat::Checkers::S3 do
 
-  let( :checker ) { StatusCat::Checkers::Stripe.new.freeze }
+  let( :checker ) { StatusCat::Checkers::S3.new.freeze }
 
   before( :each ) do
 

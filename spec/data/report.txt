@@ -1,8 +1,9 @@
---------------------------------------------------
-         Name |                    Value | Status
---------------------------------------------------
-action_mailer |             localhost:25 |   OK
-active_record | sqlite3:@db/test.sqlite3 |   OK
-        dummy |                    dummy | fail
-       stripe |                          |   OK
---------------------------------------------------
+---------------------------------------------------------------------
+         Name |                    Value |                    Status
+---------------------------------------------------------------------
+action_mailer |             localhost:25 |                        OK
+active_record | sqlite3:@db/test.sqlite3 |                        OK
+        dummy |                    dummy |                      fail
+           s3 |                          | aws-sdk gem not installed
+       stripe |                          |  stripe gem not installed
+---------------------------------------------------------------------

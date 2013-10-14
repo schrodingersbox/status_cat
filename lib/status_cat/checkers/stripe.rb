@@ -2,8 +2,9 @@ module StatusCat
   module Checkers
     class Stripe < Base
       def initialize
-        @value = ''
-        if defined?( ::Stripe )
+        if !defined?( ::Stripe )
+          @status = 'stripe gem not installed'
+        else
           @status = fail_on_exception do
             if defined?( ::Stripe )
               account = ::Stripe::Account.retrieve()

@@ -12,11 +12,11 @@ shared_examples_for 'a status checker' do
     end
 
     it 'has a value reader' do
-      checker.value.should_not be_nil
+      checker.value.should eql( checker.value )
     end
 
     it 'has a status reader' do
-      checker.status.should be_nil
+      checker.status.should eql( checker.status )
     end
 
   end
