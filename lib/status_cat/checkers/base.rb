@@ -7,8 +7,13 @@ module StatusCat
 
       attr_reader :value, :status
 
+      def self.class_to_name( klass )
+        klass.to_s.split( '::' ).last.underscore.to_sym
+      end
+
       def name
-        self.class.to_s.split( '::' ).last.underscore.to_sym
+        Base.class_to_name( self.class )
+        #self.class.to_s.split( '::' ).last.underscore.to_sym
       end
 
       def to_s( format = FORMAT )
@@ -19,7 +24,7 @@ module StatusCat
 
       def fail_on_exception
         begin
-          yield
+          return yield
         rescue Exception => e
           return e
         end

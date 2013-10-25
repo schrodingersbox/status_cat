@@ -9,7 +9,7 @@ module StatusCat
 
     def initialize
       @enabled = StatusCat::Checkers::Base.descendants.map { |klass|
-        klass.to_s.split( '::' ).last.underscore.to_sym
+        StatusCat::Checkers::Base.class_to_name( klass )
       }.sort
     end
 

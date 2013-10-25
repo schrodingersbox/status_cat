@@ -17,6 +17,7 @@ module StatusCat
             Net::SMTP.start( address, port, domain, user_name, password, authentication ) do |smtp|
               smtp.send_message( '', StatusCat.config.from, StatusCat.config.noreply )
             end
+            nil
           end
         end
       end

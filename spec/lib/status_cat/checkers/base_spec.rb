@@ -46,9 +46,9 @@ describe StatusCat::Checkers::Base do
       status.to_s.should eql( error )
     end
 
-    it 'returns nil when there is no exception' do
+    it 'returns the results of the block when there is no exception' do
       status = checker.send( :fail_on_exception ) { true }
-      status.should be_nil
+      status.should be_true
     end
 
   end

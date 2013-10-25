@@ -2,6 +2,15 @@
 
 This engine makes monitoring the status of your Rails environment easier.
 
+It provides a Rails action with a green light / red light list of configured services,
+such as:
+
+ * ActionMailer
+ * ActiveRecord
+ * AWS S3
+ * Delayed Job
+ * Stripe
+
 ## Getting Started
 
 1. Add this to your `Gemfile` and `bundle install`
@@ -87,15 +96,11 @@ Version 0.0.3 = Rails 4 compatible
 
 ## TODO
 
-* Modify Stripe checker to count as a fail if Stripe gem is not installed
-
-* Add memory checker with externally configurable limit
 * Add disk space checker with externally configurable limit
 * Add Zencoder checker?
 * Add NewRelic checker?
 
 * Dynamically create rake tasks for each checker
-* Access control for StatusCat::Status ... protected class methods suck
 
 * Doc
   * General checker concept

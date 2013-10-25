@@ -7,6 +7,7 @@ module StatusCat
 
         @status = fail_on_exception do
           ::ActiveRecord::Base.connection.execute( "select max(version) from schema_migrations" )
+          nil
         end
       end
 

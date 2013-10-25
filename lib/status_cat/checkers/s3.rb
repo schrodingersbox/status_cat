@@ -8,7 +8,7 @@ module StatusCat
           @value = AWS.config.access_key_id
           @status = fail_on_exception do
             s3 = AWS::S3.new
-            @value = 'no buckets' if s3.buckets.count < 1
+            ( s3.buckets.count > 0 ) ? nil : 'no buckets'
           end
         end
       end
