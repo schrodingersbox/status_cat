@@ -16,8 +16,32 @@ module StatusCat::StatusHelper
     content_tag( :tr ) do
       concat content_tag( :td, checker.name, :style => status_style( checker ) )
       concat content_tag( :td, checker.value )
-      concat content_tag( :td, checker.status || t( :ok, :scope => :status_cat ) )
+      concat status_cell(checker.status || t( :ok, :scope => :status_cat ))
     end
+  end
+
+  def status_cell( status )
+    if status.kind_of?(Array)
+      return content_tag( :td ) do
+        content_tag( :table ) do
+          rows = nil
+          status.each do |s|
+            row = content_tag( :tr ) do
+              content_tag( :td, s )
+            end
+
+            if rows == nil
+              rows = row
+            else
+              rows += row
+            end
+          end
+          rows
+        end
+      end
+    end
+
+    return content_tag( :td, status )
   end
 
   # Returns an HTML style for the status table cell
