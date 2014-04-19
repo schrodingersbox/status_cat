@@ -83,6 +83,8 @@ describe StatusCat::StatusHelper do
 
     it 'generates a text status report' do
       all = StatusCat::Status.all
+      all.each { |s| s.stub( :status ).and_return( nil ) }
+
       helper.status_report( all ).should eql_file( 'spec/data/report.txt' )
     end
 
@@ -91,7 +93,10 @@ describe StatusCat::StatusHelper do
   describe '#status_report_format' do
 
     it 'generates a format string and length based on the max length of the given checkers' do
-      status_report_format = helper.status_report_format( StatusCat::Status.all ).to_s
+      all = StatusCat::Status.all
+      all.each { |s| s.stub( :status ).and_return( nil ) }
+
+      status_report_format = helper.status_report_format( all ).to_s
       status_report_format.should eql_file( 'spec/data/status_report_format.txt' )
     end
 
