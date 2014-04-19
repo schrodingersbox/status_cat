@@ -34,4 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webrat', '~> 0.7', '>= 0.7.3'
   s.add_development_dependency 'simplecov', '~> 0.8', '>= 0.8.2'
   s.add_development_dependency 'coveralls', '~> 0.7', '>= 0.7.0'
+
+  s.add_development_dependency 'aws-sdk'
+  s.add_development_dependency 'delayed_job_active_record'
 end

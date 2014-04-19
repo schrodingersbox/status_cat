@@ -33,6 +33,20 @@ describe StatusCat::StatusHelper do
 
   end
 
+  describe '#status_cell' do
+
+    it 'returns the status as a table cell' do
+      expected = "<td>foo</td>"
+      expect( helper.status_cell( 'foo' ) ).to eql( expected )
+    end
+
+    it 'converts array statuses into html lists' do
+      expected = "<td><ul><li>foo</li><li>bar</li></ul></td>"
+      expect( helper.status_cell( [ 'foo', 'bar' ] ) ).to eql( expected )
+    end
+
+  end
+
   describe '#status_style' do
 
     it 'returns a green background when the status is nil' do

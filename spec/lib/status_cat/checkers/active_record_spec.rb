@@ -22,7 +22,7 @@ describe StatusCat::Checkers::ActiveRecord do
     context 'pass' do
 
       it 'passes if it can execute a query against the database' do
-        ActiveRecord::Base.connection.stub!( :execute )
+        ActiveRecord::Base.connection.stub( :execute )
         checker = StatusCat::Checkers::ActiveRecord.new
         checker.status.should be_nil
       end

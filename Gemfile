@@ -17,5 +17,6 @@ gem "jquery-rails"
 # gem 'debugger'
 
 group :development, :test do
+  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
   gem 'spec_cat', :git => 'https://github.com/schrodingersbox/spec_cat.git', :tag => 'v0.1.0'
 end

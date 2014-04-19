@@ -1,10 +1,10 @@
--------------------------------------------------------------------------
-         Name |                    Value |                        Status
--------------------------------------------------------------------------
-action_mailer |             localhost:25 |                            OK
-active_record | sqlite3:@db/test.sqlite3 |                            OK
-  delayed_job |                          | delayed_job gem not installed
-        dummy |                    dummy |                          fail
-           s3 |                          |     aws-sdk gem not installed
-       stripe |                          |      stripe gem not installed
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         Name |                    Value |                                                                                                                                                                                                                            Status
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+action_mailer |             localhost:25 |                                                                                                                                                                                                                                OK
+active_record | sqlite3:@db/test.sqlite3 |                                                                                                                                                                                                                                OK
+  delayed_job |                          |                                                                                                                                             SQLite3::SQLException: no such table: delayed_jobs: select count(*) from delayed_jobs
+        dummy |                    dummy |                                                                                                                                                                                                          ["fail", "fail", "fail"]
+           s3 |                          |                                                                                                                                                                           Host is down - connect(2) for "169.254.169.254" port 80
+       stripe |                          | No API key provided. Set your API key using "Stripe.api_key = <API-KEY>". You can generate API keys from the Stripe web interface. See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

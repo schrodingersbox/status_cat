@@ -101,7 +101,7 @@ describe StatusCat::Status do
       @pass = StatusCat::Checkers::Base.new
 
       @fail = StatusCat::Checkers::Base.new
-      @fail.stub!( :status ).and_return( :fail )
+      @fail.stub( :status ).and_return( :fail )
     end
 
     it 'returns only failed checkers from ::all' do

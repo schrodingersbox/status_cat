@@ -22,23 +22,8 @@ module StatusCat::StatusHelper
 
   def status_cell( status )
     if status.kind_of?(Array)
-      return content_tag( :td ) do
-        content_tag( :table ) do
-          rows = nil
-          status.each do |s|
-            row = content_tag( :tr ) do
-              content_tag( :td, s )
-            end
-
-            if rows == nil
-              rows = row
-            else
-              rows += row
-            end
-          end
-          rows
-        end
-      end
+      list = status.map { |s| content_tag( :li, s ) }
+      status = content_tag( :ul, list.join.html_safe )
     end
 
     return content_tag( :td, status )

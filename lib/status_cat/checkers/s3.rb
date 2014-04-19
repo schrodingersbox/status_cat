@@ -1,6 +1,7 @@
 module StatusCat
   module Checkers
     class S3 < Base
+
       def initialize
         if !defined?( ::AWS )
           @status = 'aws-sdk gem not installed'
@@ -12,6 +13,7 @@ module StatusCat
           end
         end
       end
+
     end
   end
 end

@@ -17,7 +17,7 @@ describe StatusCat::Config do
     end
 
     it 'has an #authorize accessor' do
-      config.authorize.should_not be_nil
+      config.authorize = StatusCat::Config::NIL_PROC
       config.authorize = config.authorize
       config.authorize.should eql( config.authorize )
     end

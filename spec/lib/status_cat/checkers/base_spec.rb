@@ -24,8 +24,8 @@ describe StatusCat::Checkers::Base do
   describe '#to_s' do
 
     before( :each ) do
-      checker.stub!( :value ).and_return( 'secret' )
-      checker.stub!( :status ).and_return( 'fail' )
+      checker.stub( :value ).and_return( 'secret' )
+      checker.stub( :status ).and_return( 'fail' )
     end
 
     it 'generates a string' do
