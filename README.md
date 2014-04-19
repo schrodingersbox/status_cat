@@ -1,3 +1,10 @@
+[![Gem Version](https://badge.fury.io/rb/status_cat.png)](http://badge.fury.io/rb/status_cat)
+[![Build Status](https://travis-ci.org/schrodingersbox/status_cat.svg?branch=master)](https://travis-ci.org/schrodingersbox/status_cat)
+[![Dependency Status](https://gemnasium.com/schrodingersbox/status_cat.png)](https://gemnasium.com/schrodingersbox/status_cat)
+[![Coverage Status](https://coveralls.io/repos/schrodingersbox/status_cat/badge.png?branch=master)](https://coveralls.io/r/schrodingersbox/status_cat?branch=master)
+[![Code Climate](https://codeclimate.com/github/schrodingersbox/status_cat.png)](https://codeclimate.com/github/schrodingersbox/status_cat)
+
+
 # schrodingersbox/status_cat README
 
 This engine makes monitoring the status of your Rails environment easier.
@@ -15,7 +22,7 @@ such as:
 
 1. Add this to your `Gemfile` and `bundle install`
 
-		gem 'status_cat', :git => 'https://github.com/schrodingersbox/status_cat.git'
+		gem 'status_cat'
 
 2. Add this to your `config/routes.rb`
 
@@ -157,5 +164,3 @@ Version 0.0.3 = Rails 4 compatible
 * Doc
   * General checker concept
   * Shared spec
-
-* Publish as gem
