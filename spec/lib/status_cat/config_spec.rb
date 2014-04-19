@@ -10,6 +10,18 @@ describe StatusCat::Config do
 
   describe 'attributes' do
 
+    it 'has an #authenticate accessor' do
+      config.authenticate = StatusCat::Config::NIL_PROC
+      config.authenticate = config.authenticate
+      config.authenticate.should eql( config.authenticate )
+    end
+
+    it 'has an #authorize accessor' do
+      config.authorize.should_not be_nil
+      config.authorize = config.authorize
+      config.authorize.should eql( config.authorize )
+    end
+
     it 'has an #enabled accessor' do
       config.enabled.should_not be_nil
       config.enabled = config.enabled
@@ -20,6 +32,12 @@ describe StatusCat::Config do
       config.from.should_not be_nil
       config.from = config.from
       config.from.should eql( config.from )
+    end
+
+    it 'has a #layout accessor' do
+      config.layout.should_not be_nil
+      config.layout = config.layout
+      config.layout.should eql( config.layout )
     end
 
     it 'has a #noreply accessor' do
@@ -51,6 +69,62 @@ describe StatusCat::Config do
       config.enabled = nil
       config.send( :initialize )
       config.enabled.should_not be_nil
+    end
+
+  end
+
+  describe '#authenticate_with' do
+
+    it 'accepts a block' do
+      config.authenticate = nil
+      config.authenticate_with do
+        true
+      end
+
+      expect( config.authenticate ).to_not be_nil
+    end
+
+    it 'returns a block' do
+      @test = false
+      config.authenticate_with do
+        @test = true
+      end
+
+      instance_eval( &config.authenticate_with )
+      expect( @test ).to be_true
+    end
+
+    it 'returns a nil proc if none has been set' do
+      config.authenticate = nil
+      instance_eval( &config.authenticate_with )
+    end
+
+  end
+
+  describe '#authorize_with' do
+
+    it 'accepts a block' do
+      config.authorize = nil
+      config.authorize_with do
+        true
+      end
+
+      expect( config.authorize ).to_not be_nil
+    end
+
+    it 'returns a block' do
+      @test = false
+      config.authorize_with do
+        @test = true
+      end
+
+      instance_eval( &config.authorize_with )
+      expect( @test ).to be_true
+    end
+
+    it 'returns a nil proc if none has been set' do
+      config.authorize = nil
+      instance_eval( &config.authorize_with )
     end
 
   end

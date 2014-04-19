@@ -27,6 +27,29 @@ such as:
 
 5.  Visit http://yourapp/status_cat in a browser for an HTML status report
 
+## Configuration
+
+  All configuration should go in `config/initializers/status_cat.rb`.
+
+      Status.configure do |config|
+
+          config.authenticate_with do
+            authenticate!
+          end
+
+          config.authorize_with do
+            authorize!
+          end
+
+          config.layout = 'admin'
+
+          config.noreply = 'noreply@schrodingersbox.com'
+          config.to = 'ops@schrodingersbox.com'
+          config.from = 'ops@schrodingersbox.com'
+          config.subject = "#{Rails.env.upcase} StatusCat Failure"
+
+      end
+
 ## How To
 
 ### Configure Enabled Checkers
@@ -77,6 +100,33 @@ You can place new checkers anywhere you like, but `app/checkers` is the recommen
 	      end
 	    end
 
+### Require authentication
+
+Create or add to `config/initializers/status_cat.rb`
+
+    StatusCat.configure do |config|
+      config.authenticate_with do
+        warden.authenticate! scope: :user
+      end
+    end
+
+### Require authorization
+
+Create or add to `config/initializers/status_cat.rb`
+
+    StatusCat.configure do |config|
+      config.authorize_with do
+        redirect_to main_app.root_path unless current_user.try(:admin?)
+      end
+    end
+
+### Apply a custom layout
+
+Create or add to `config/initializers/status_cat.rb`
+
+    StatusCat.configure do |config|
+      config.layout = 'admin'
+    end
 
 ## Reference
 

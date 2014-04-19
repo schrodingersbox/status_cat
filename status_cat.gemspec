@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,spec/support/shared}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'rails', '~>4.0.0'
-  # s.add_dependency "jquery-rails"
+  s.add_dependency 'rails', '~> 4.0', '>= 4.0.0'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec-rails', '~>2.11.0'
+  s.add_development_dependency 'rspec', '~> 2.14', '>= 2.14.0'
+  s.add_development_dependency 'rspec-rails', '~> 2.14', '>= 2.14.0'
   s.add_development_dependency 'webrat', '~>0.7.3'
 end
