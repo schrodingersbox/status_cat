@@ -138,6 +138,8 @@ Create or add to `config/initializers/status_cat.rb`
  * [The Semi-Isolated Rails Engine](http://bibwild.wordpress.com/2012/05/10/the-semi-isolated-rails-engine/)
  * [config.reload_plugins = true only works in environment.rb](https://rails.lighthouseapp.com/projects/8994/tickets/2324-configreload_plugins-true-only-works-in-environmentrb?spam=1)
  * [describe vs. context in rspec](http://lmws.net/describe-vs-context-in-rspec)
+ * [Add Achievement Badges to Your Gem README](http://elgalu.github.io/2013/add-achievement-badges-to-your-gem-readme/)
+ * [Publishing your gem](http://guides.rubygems.org/publishing/)
 
 ## History
 
