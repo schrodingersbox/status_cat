@@ -6,14 +6,10 @@ describe StatusCat::Checkers::ActiveRecord do
 
   it_should_behave_like 'a status checker'
 
-  it 'provides configuration' do
-    yaml =  YAML::load( ERB.new( IO.read( File.join( Rails.root, 'config', 'database.yml' ) ) ).result )
-    expected = yaml[ Rails.env ].symbolize_keys!
-    checker.config.should eql( expected )
-  end
-
   it 'constructs a value from the configuration' do
-    expected = "#{checker.config[ :adapter ]}:#{checker.config[ :username ]}@#{checker.config[ :database ]}"
+    config = { :adapter => 'postgres', :username => 'dba', :database => 'test' }
+    expect( ::ActiveRecord::Base ).to receive( :connection_config ).and_return( config )
+    expected = "#{config[ :adapter ]}:#{config[ :username ]}@#{config[ :database ]}"
     checker.value.should eql( expected )
   end
 
