@@ -29,12 +29,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.0', '>= 4.0.0'
 
   s.add_development_dependency 'sqlite3', '~> 1.3', '>= 1.3.8'
-  s.add_development_dependency 'rspec', '~> 2.14', '>= 2.14.0'
-  s.add_development_dependency 'rspec-rails', '~> 2.14', '>= 2.14.0'
+  s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
+  s.add_development_dependency 'rspec-rails', '~> 3.1', '>= 3.1.0'
   s.add_development_dependency 'webrat', '~> 0.7', '>= 0.7.3'
   s.add_development_dependency 'simplecov', '~> 0.8', '>= 0.8.2'
   s.add_development_dependency 'coveralls', '~> 0.7', '>= 0.7.0'
-  s.add_development_dependency 'spec_cat', '~> 1.0', '>= 1.0.0'
+  s.add_development_dependency 'spec_cat', '~> 3.0', '>= 3.0.0'
 
   s.add_development_dependency 'aws-sdk', '~> 1.38', '>= 1.38.0'
   s.add_development_dependency 'delayed_job_active_record', '~> 4.0', '>= 4.0.0'

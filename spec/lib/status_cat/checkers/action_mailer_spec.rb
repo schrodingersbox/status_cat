@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe StatusCat::Checkers::ActionMailer do
 
   let( :checker ) { StatusCat::Checkers::ActionMailer.new.freeze }
@@ -7,12 +5,12 @@ describe StatusCat::Checkers::ActionMailer do
   it_should_behave_like 'a status checker'
 
   it 'provides configuration' do
-    checker.config.should eql( ::ActionMailer::Base.smtp_settings )
+    expect( checker.config ).to eql( ::ActionMailer::Base.smtp_settings )
   end
 
   it 'constructs a value from the configuration' do
     expected = "#{checker.config[ :address ]}:#{checker.config[ :port ]}"
-    checker.value.should eql( expected )
+    expect( checker.value ).to eql( expected )
   end
 
   #############################################################################
@@ -36,11 +34,10 @@ describe StatusCat::Checkers::ActionMailer do
     context 'pass' do
 
       it 'passes if it can make an SMTP connection' do
-        Net::SMTP.should_receive( :start )
+        expect( Net::SMTP ).to receive( :start )
         checker = StatusCat::Checkers::ActionMailer.new
-        checker.status.should be_nil
+        expect( checker.status ).to be_nil
       end
-
     end
 
     #############################################################################
@@ -52,21 +49,18 @@ describe StatusCat::Checkers::ActionMailer do
       let( :exception ) { Net::SMTPAuthenticationError.new }
 
       it 'returns an error message if it can not make an SMTP connection' do
-        Net::SMTP.should_receive( :start ).and_raise( exception )
+        expect( Net::SMTP ).to receive( :start ).and_raise( exception )
         checker = StatusCat::Checkers::ActionMailer.new
-        checker.status.should be( exception )
+        expect( checker.status ).to be( exception )
       end
 
       it 'returns an error message if it can not send a message' do
         smtp = Object.new
-        smtp.stub( :send_message ).and_raise( exception )
-        Net::SMTP.should_receive( :start ).and_yield( smtp )
+        allow( smtp ).to receive( :send_message ).and_raise( exception )
+        allow( Net::SMTP ).to receive( :start ).and_yield( smtp )
         checker = StatusCat::Checkers::ActionMailer.new
-        checker.status.should be( exception )
+        expect( checker.status ).to be( exception )
       end
-
     end
-
   end
-
 end

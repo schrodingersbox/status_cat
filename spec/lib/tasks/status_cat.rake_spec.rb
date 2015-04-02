@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rake'
 
 describe 'status_cat rake tasks' do
@@ -13,20 +12,16 @@ describe 'status_cat rake tasks' do
   describe 'rake status_cat:check' do
 
     it 'puts the status report' do
-      Kernel.should_receive( :puts ).with( kind_of( String ) )
+      expect( Kernel ).to receive( :puts ).with( kind_of( String ) )
       @rake[ 'status_cat:check' ].invoke
     end
-
   end
 
   describe 'rake status_cat:cron' do
 
     it 'calls StatusCat::Status.cron' do
-      StatusCat::Status.should_receive( :cron )
+      expect( StatusCat::Status ).to receive( :cron )
       @rake[ 'status_cat:cron' ].invoke
     end
-
   end
-
-
 end

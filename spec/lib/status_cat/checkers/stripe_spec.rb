@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'stripe'
 
 describe StatusCat::Checkers::Stripe do
@@ -7,7 +6,7 @@ describe StatusCat::Checkers::Stripe do
   let( :email ) { 'foo@bar.com' }
 
   before( :each ) do
-    Stripe::Account.stub( :retrieve ).and_return( @stripe = double( Stripe::Account ) )
+    allow( Stripe::Account ).to receive( :retrieve ).and_return( @stripe = double( Stripe::Account ) )
   end
 
   it_should_behave_like 'a status checker'
@@ -40,5 +39,4 @@ describe StatusCat::Checkers::Stripe do
     expect( @stripe ).to receive( :email ).and_return( email )
     expect( checker.value ).to eql( email )
   end
-
 end

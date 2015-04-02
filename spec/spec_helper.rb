@@ -16,7 +16,6 @@ end
 
 require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 
 require 'spec_cat'
 
@@ -54,6 +53,4 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
-
-  config.raise_errors_for_deprecations!
 end

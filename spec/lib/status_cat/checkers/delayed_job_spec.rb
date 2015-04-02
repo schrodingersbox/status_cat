@@ -1,13 +1,8 @@
-require 'spec_helper'
 require 'delayed_job_active_record'
 
 describe StatusCat::Checkers::DelayedJob do
 
   let( :checker ) { StatusCat::Checkers::DelayedJob.new.freeze }
-
-  before( :each ) do
-
-  end
 
   it_should_behave_like 'a status checker'
 
@@ -18,23 +13,22 @@ describe StatusCat::Checkers::DelayedJob do
   end
 
   it 'fails if there is an exception' do
-    ActiveRecord::Base.connection.should_receive( :execute ).and_raise( :error )
+    expect( ActiveRecord::Base.connection ).to receive( :execute ).and_raise( :error )
     expect( checker.status ).to_not be_nil
   end
 
   it 'fails if there are expired jobs' do
-    ActiveRecord::Base.connection.should_receive( :execute ).and_return( [1], [1] )
+    expect( ActiveRecord::Base.connection ).to receive( :execute ).and_return( [1], [1] )
     expect( checker.status ).to_not be_nil
   end
 
   it 'passes if there are no expired jobs' do
-    ActiveRecord::Base.connection.should_receive( :execute ).and_return( [1], [0] )
+    expect( ActiveRecord::Base.connection ).to receive( :execute ).and_return( [1], [0] )
     expect( checker.status ).to be_nil
   end
 
   it 'uses the job count as the value' do
-    ActiveRecord::Base.connection.should_receive( :execute ).and_return( [1], [0] )
+    expect( ActiveRecord::Base.connection ).to receive( :execute ).and_return( [1], [0] )
     expect( checker.value ).to eql( 1 )
   end
-
 end

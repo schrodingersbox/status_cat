@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe StatusCat::Status do
 
   #############################################################################
@@ -10,14 +8,13 @@ describe StatusCat::Status do
 
     it 'returns an array of enabled checkers' do
       enabled = StatusCat::Config.instance.enabled
-      StatusCat::Config.instance.should_receive( :enabled ).and_return( enabled )
+      expect( StatusCat::Config.instance ).to receive( :enabled ).and_return( enabled )
 
       all = StatusCat::Status.all
-      all.should be_an_instance_of( Array )
-      all.length.should eql( StatusCat::Checkers::Base.descendants.length )
-      all.each { |checker| checker.should be_a_kind_of( StatusCat::Checkers::Base ) }
+      expect( all ).to be_an_instance_of( Array )
+      expect( all.length ).to eql( StatusCat::Checkers::Base.descendants.length )
+      all.each { |checker| expect( checker ).to be_a_kind_of( StatusCat::Checkers::Base ) }
     end
-
   end
 
   #############################################################################
@@ -27,9 +24,9 @@ describe StatusCat::Status do
   describe '::check' do
 
     def checker_array_should_have_names( actual, expected )
-      actual.should be_a_kind_of( Array )
-      actual.length.should eql( expected.length )
-      actual.each_index { |i| actual[ i ].name.should be( expected[ i ] ) }
+      expect( actual ).to be_a_kind_of( Array )
+      expect( actual.length ).to eql( expected.length )
+      actual.each_index { |i| expect( actual[ i ].name ).to be( expected[ i ] ) }
     end
 
     it 'defaults to all checkers' do
@@ -45,7 +42,7 @@ describe StatusCat::Status do
     end
 
     it 'returns a single checker when given a single symbolic name' do
-      StatusCat::Status.check( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
+      expect( StatusCat::Status.check( :active_record ) ).to be_an_instance_of( StatusCat::Checkers::ActiveRecord )
     end
 
     it 'returns an array of checkers when given an array of symbolic name' do
@@ -53,7 +50,6 @@ describe StatusCat::Status do
       checkers = StatusCat::Status.check( names )
       checker_array_should_have_names( checkers, names )
     end
-
   end
 
   #############################################################################
@@ -65,17 +61,16 @@ describe StatusCat::Status do
     it 'delivers email if ::failed is not empty' do
       failed = [ StatusCat::Checkers::Base.new ]
       mail =  StatusCat::StatusMailer.failure( failed )
-      StatusCat::Status.should_receive( :failed ).and_return( failed )
-      StatusCat::StatusMailer.should_receive( :failure ).with( failed ).and_return( mail )
+      expect( StatusCat::Status ).to receive( :failed ).and_return( failed )
+      expect( StatusCat::StatusMailer ).to receive( :failure ).with( failed ).and_return( mail )
       StatusCat::Status.cron
     end
 
     it 'does not email when ::failed is empty' do
-      StatusCat::Status.should_receive( :failed ).and_return( [] )
-      StatusCat::StatusMailer.should_not_receive( :failure )
+      expect( StatusCat::Status ).to receive( :failed ).and_return( [] )
+      expect( StatusCat::StatusMailer ).to_not receive( :failure )
       StatusCat::Status.cron
     end
-
   end
 
   #############################################################################
@@ -85,10 +80,9 @@ describe StatusCat::Status do
   describe '::factory' do
 
     it 'constructs a checker given its symbolic name' do
-      StatusCat::Status.factory( :action_mailer ).should be_an_instance_of( StatusCat::Checkers::ActionMailer )
-      StatusCat::Status.factory( :active_record ).should be_an_instance_of( StatusCat::Checkers::ActiveRecord )
+      expect( StatusCat::Status.factory( :action_mailer ) ).to be_an_instance_of( StatusCat::Checkers::ActionMailer )
+      expect( StatusCat::Status.factory( :active_record ) ).to be_an_instance_of( StatusCat::Checkers::ActiveRecord )
     end
-
   end
 
   #############################################################################
@@ -101,20 +95,18 @@ describe StatusCat::Status do
       @pass = StatusCat::Checkers::Base.new
 
       @fail = StatusCat::Checkers::Base.new
-      @fail.stub( :status ).and_return( :fail )
+      allow( @fail ).to receive( :status ).and_return( :fail )
     end
 
     it 'returns only failed checkers from ::all' do
-      StatusCat::Status.should_receive( :all ).and_return( [ @pass, @fail ] )
-      StatusCat::Status.failed.should eql( [ @fail ] )
+      expect(  StatusCat::Status ).to receive( :all ).and_return( [ @pass, @fail ] )
+      expect( StatusCat::Status.failed ).to eql( [ @fail ] )
     end
 
     it 'returns an empty list if all checkers pass' do
-      StatusCat::Status.should_receive( :all ).and_return( [ @pass ] )
-      StatusCat::Status.failed.should eql( [] )
+      expect( StatusCat::Status ).to receive( :all ).and_return( [ @pass ] )
+      expect( StatusCat::Status.failed ).to eql( [] )
     end
-
   end
-
 end
 

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'status_cat/status/index.html.erb' do
 
   before( :each ) do
@@ -9,16 +7,16 @@ describe 'status_cat/status/index.html.erb' do
 
   it 'includes an h1 tag' do
     render
-    rendered.should have_selector( :h1, :content => t( :h1, :scope => :status_cat )  )
+    expect( rendered ).to match( /<h1>#{t( :h1, :scope => :status_cat )}<\/h1>/ )
   end
 
   it 'uses the status_title helper'  do
-    view.should_receive( :status_title )
+    expect( view ).to receive( :status_title )
     render
   end
 
   it 'uses the status_table helper'  do
-    view.should_receive( :status_table ).with( @checkers )
+    expect( view ).to receive( :status_table ).with( @checkers )
     render
   end
 

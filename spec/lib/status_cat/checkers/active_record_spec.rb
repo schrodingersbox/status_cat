@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe StatusCat::Checkers::ActiveRecord do
 
   let( :checker ) { StatusCat::Checkers::ActiveRecord.new.freeze }
@@ -10,7 +8,7 @@ describe StatusCat::Checkers::ActiveRecord do
     config = { :adapter => 'postgres', :username => 'dba', :database => 'test' }
     expect( ::ActiveRecord::Base ).to receive( :connection_config ).and_return( config )
     expected = "#{config[ :adapter ]}:#{config[ :username ]}@#{config[ :database ]}"
-    checker.value.should eql( expected )
+    expect( checker.value ).to eql( expected )
   end
 
   describe '#status' do
@@ -18,24 +16,20 @@ describe StatusCat::Checkers::ActiveRecord do
     context 'pass' do
 
       it 'passes if it can execute a query against the database' do
-        ActiveRecord::Base.connection.stub( :execute )
+        allow( ActiveRecord::Base.connection ).to receive( :execute )
         checker = StatusCat::Checkers::ActiveRecord.new
-        checker.status.should be_nil
+        expect( checker.status ).to be_nil
       end
-
     end
 
     context 'fail' do
 
       it 'returns an error message if it fails to query the database' do
         fail = 'This is only a test'
-        ActiveRecord::Base.connection.should_receive( :execute ).and_raise( fail )
+        expect( ActiveRecord::Base.connection ).to receive( :execute ).and_raise( fail )
         checker = StatusCat::Checkers::ActiveRecord.new
-        checker.status.to_s.should eql( fail )
+        expect( checker.status.to_s ).to eql( fail )
       end
-
     end
-
   end
-
 end

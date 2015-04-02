@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'status_cat/status_mailer/failure.html.erb' do
 
   before( :each ) do
@@ -8,7 +6,7 @@ describe 'status_cat/status_mailer/failure.html.erb' do
   end
 
   it 'uses the status_table helper'  do
-    view.should_receive( :status_table ).with( @checkers )
+    expect( view ).to receive( :status_table ).with( @checkers )
     render
   end
 
