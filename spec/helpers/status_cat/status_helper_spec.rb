@@ -85,7 +85,8 @@ describe StatusCat::StatusHelper do
       all = StatusCat::Status.all
       all.each { |s| s.stub( :status ).and_return( nil ) }
 
-      helper.status_report( all ).should eql_file( 'spec/data/report.txt' )
+      actual = helper.status_report( all )
+      all.each { |s| actual.should =~ /#{s}/ }
     end
 
   end
@@ -97,7 +98,7 @@ describe StatusCat::StatusHelper do
       all.each { |s| s.stub( :status ).and_return( nil ) }
 
       status_report_format = helper.status_report_format( all ).to_s
-      status_report_format.should eql_file( 'spec/data/status_report_format.txt' )
+      status_report_format.should =~ /\["%\d+s | %\d+s | %\d+s\n", \d+\]/
     end
 
   end

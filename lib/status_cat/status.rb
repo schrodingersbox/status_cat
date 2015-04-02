@@ -19,7 +19,7 @@ module StatusCat
     # Emails ::failed list if it is not empty
     def self.cron
       checkers = self.failed
-      StatusCat::StatusMailer.failure( checkers ).deliver unless checkers.empty?
+      StatusCat::StatusMailer.failure( checkers ).deliver_now unless checkers.empty?
     end
 
     # Constructs a checker instance given it's name

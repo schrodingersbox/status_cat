@@ -48,7 +48,7 @@ describe StatusCat::Checkers::Base do
 
     it 'returns the results of the block when there is no exception' do
       status = checker.send( :fail_on_exception ) { true }
-      status.should be_true
+      status.should be( true )
     end
 
   end
