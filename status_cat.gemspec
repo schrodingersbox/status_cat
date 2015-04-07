@@ -38,4 +38,8 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'aws-sdk', '~> 1.38', '>= 1.38.0'
   s.add_development_dependency 'delayed_job_active_record', '~> 4.0', '>= 4.0.0'
+  s.add_development_dependency 'fitgem', '~> 0.10', '>= 0.10.0'
+  s.add_development_dependency 'httparty', '~> 0.13', '>= 0.13.0'
+  s.add_development_dependency 'ruby-sendhub', '~> 0.0', '>= 0.0.0'
+  s.add_development_dependency 'twilio-ruby', '~> 3.11', '>= 3.11.0'
 end

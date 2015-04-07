@@ -17,6 +17,10 @@ such as:
  * AWS S3
  * Delayed Job
  * Stripe
+ * Fitbit
+ * Profiles.io
+ * SendHub
+ * Twilio
 
 ## Getting Started
 
@@ -165,3 +169,4 @@ Create or add to `config/initializers/status_cat.rb`
  * Doc
    * General checker concept
    * Shared spec
+   * Env vars to configure services

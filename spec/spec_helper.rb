@@ -19,6 +19,11 @@ require 'rspec/rails'
 
 require 'spec_cat'
 
+require 'fitgem'
+require 'httparty'
+require 'ruby-sendhub'
+require 'twilio-ruby'
+
 ENGINE_ROOT = File.join(File.dirname(__FILE__), '..')
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -53,4 +58,19 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+
+  config.before( :each ) do
+    allow( Fitgem::Client ).to receive( :new ).and_return( @fitgem = double( Fitgem::Client ) )
+    allow( @fitgem ).to receive( :user_info ).and_return( {} )
+
+    allow( HTTParty ).to receive( :get ).and_return( double( "response", :code => 200 ) )
+
+    allow( SendHub ).to receive( :new ).and_return( @send_hub = double( SendHub ) )
+    allow( @send_hub ).to receive( :get_contacts ).and_return( {} )
+
+    allow( Twilio::REST::Client ).to receive( :new ).and_return( @twilio = double( Twilio::REST::Client ) )
+    allow( @twilio ).to receive( :account ).and_return( @twilio_account = double( Twilio::REST::Account ) )
+    allow( @twilio_account ).to receive( :messages ).and_return( @twilio_messages = double( Twilio::REST::Messages ) )
+    allow( @twilio_messages ).to receive( :total ).and_return( 0 )
+  end
 end
