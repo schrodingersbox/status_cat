@@ -40,21 +40,22 @@ such as:
 
       Status.configure do |config|
 
-          config.authenticate_with do
-            authenticate!
-          end
+        config.authenticate_with do
+          authenticate!
+        end
 
-          config.authorize_with do
-            authorize!
-          end
+        config.authorize_with do
+          authorize!
+        end
 
-          config.layout = 'admin'
+        config.layout = 'admin'
 
-          config.noreply = 'noreply@schrodingersbox.com'
-          config.to = 'ops@schrodingersbox.com'
-          config.from = 'ops@schrodingersbox.com'
-          config.subject = "#{Rails.env.upcase} StatusCat Failure"
+        config.noreply = 'noreply@schrodingersbox.com'
+        config.to = 'ops@schrodingersbox.com'
+        config.from = 'ops@schrodingersbox.com'
+        config.subject = "#{Rails.env.upcase} StatusCat Failure"
 
+        config.enabled = [ :action_mailer, :active_record ]
       end
 
 ## How To
@@ -150,17 +151,17 @@ Create or add to `config/initializers/status_cat.rb`
 
 ## History
 
-Version 0.0.2 = Rails 3 compatible
-Version 0.0.3 = Rails 4 compatible
+ * Version 0.0.2 = Rails 3 compatible
+ * Version 0.0.3 = Rails 4 compatible
 
 ## TODO
 
-* Add disk space checker with externally configurable limit
-* Add Zencoder checker?
-* Add NewRelic checker?
+ * Add disk space checker with externally configurable limit
+ * Add Zencoder checker?
+ * Add NewRelic checker?
 
-* Dynamically create rake tasks for each checker
+ * Dynamically create rake tasks for each checker
 
-* Doc
-  * General checker concept
-  * Shared spec
+ * Doc
+   * General checker concept
+   * Shared spec
