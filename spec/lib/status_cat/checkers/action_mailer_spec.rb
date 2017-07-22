@@ -53,7 +53,7 @@ describe StatusCat::Checkers::ActionMailer do
 
       it 'returns an error message if it can not send a message' do
         smtp = Object.new
-        allow(smtp).to receive(:send_message).and_raise(exception)
+        allow(smtp).to receive(:helo).and_raise(exception)
         allow(Net::SMTP).to receive(:start).and_yield(smtp)
         checker = StatusCat::Checkers::ActionMailer.new
         expect(checker.status).to be(exception)

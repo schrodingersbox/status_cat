@@ -10,7 +10,7 @@ module StatusCat
 
       def test
         Net::SMTP.start(address, port, domain, user_name, password, authentication) do |smtp|
-          smtp.send_message('', StatusCat.config.from, StatusCat.config.noreply)
+          smtp.helo(domain)
         end
         return nil
       end
