@@ -4,10 +4,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
-]
+])
 
 SimpleCov.start 'rails' do
   add_filter '/vendor/'
@@ -16,9 +16,11 @@ end
 
 require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rspec/rails'
+require 'rails-controller-testing'
 
 require 'spec_cat'
 
+require 'aws-sdk'
 require 'fitgem'
 require 'httparty'
 require 'ruby-sendhub'
@@ -59,7 +61,15 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
+  end
+
   config.before( :each ) do
+    Aws.config.update({ credentials: Aws::Credentials.new( 'spec_access_key', 'spec_secret_key')})
+
     allow( Fitgem::Client ).to receive( :new ).and_return( @fitgem = double( Fitgem::Client ) )
     allow( @fitgem ).to receive( :user_info ).and_return( {} )
 
@@ -69,8 +79,9 @@ RSpec.configure do |config|
     allow( @send_hub ).to receive( :get_contacts ).and_return( {} )
 
     allow( Twilio::REST::Client ).to receive( :new ).and_return( @twilio = double( Twilio::REST::Client ) )
-    allow( @twilio ).to receive( :account ).and_return( @twilio_account = double( Twilio::REST::Account ) )
-    allow( @twilio_account ).to receive( :messages ).and_return( @twilio_messages = double( Twilio::REST::Messages ) )
+    allow( @twilio ).to receive( :api ).and_return( @twilio_api = double( Twilio::REST::Api ) )
+    allow( @twilio_api ).to receive( :account ).and_return( @twilio_account = double( Twilio::REST::Api::V2010::AccountContext ) )
+    allow( @twilio_account ).to receive( :messages ).and_return( @twilio_messages = double( Twilio::REST::Api::V2010::AccountContext::MessageList ) )
     allow( @twilio_messages ).to receive( :total ).and_return( 0 )
   end
 end

@@ -16,6 +16,3 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 
-group :development, :test do
-  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-end

@@ -2,8 +2,8 @@ class StatusCat::StatusController < ApplicationController
 
   layout :set_layout
 
-  before_filter :_authenticate!
-  before_filter :_authorize!
+  before_action :_authenticate!
+  before_action :_authorize!
 
   def index
     @checkers = StatusCat::Status.all

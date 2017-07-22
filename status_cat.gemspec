@@ -5,7 +5,7 @@ require 'status_cat/version'
 Gem::Specification.new do |s|
   s.name        = 'status_cat'
   s.version     = StatusCat::VERSION
-  s.date        = Date.today
+  s.date        = '2017-07-22'
   s.licenses    = ['MIT']
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']
@@ -29,18 +29,20 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 5.0', '>= 5.0.0'
 
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'webrat'
-  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'rails-controller-testing'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'spec_cat'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'term-ansicolor'
+  s.add_development_dependency 'webrat'
 
   s.add_development_dependency 'aws-sdk'
   s.add_development_dependency 'delayed_job_active_record'
   s.add_development_dependency 'fitgem'
   s.add_development_dependency 'httparty'
   s.add_development_dependency 'ruby-sendhub'
+  s.add_development_dependency 'stripe'
   s.add_development_dependency 'twilio-ruby'
 end

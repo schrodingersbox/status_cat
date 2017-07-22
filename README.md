@@ -139,6 +139,11 @@ Create or add to `config/initializers/status_cat.rb`
     StatusCat.configure do |config|
       config.layout = 'admin'
     end
+    
+### Get Started Developing
+
+1.  `cp spec/dummy/config/passwords.yml.sample spec/dummy/config/passwords.yml`    
+2.  `rake app:db:create app:db:migrate app:db:test:prepare`
 
 ## Reference
 

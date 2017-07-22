@@ -3,12 +3,12 @@ module StatusCat
     class S3 < Base
 
       def initialize
-        if !defined?( ::AWS )
+        if !defined?( ::Aws )
           @status = 'aws-sdk gem not installed'
         else
-          @value = AWS.config.access_key_id
+          @value = Aws.config[:credentials].access_key_id
           @status = fail_on_exception do
-            s3 = AWS::S3.new
+            s3 = Aws::S3::Resource.new
             ( s3.buckets.count > 0 ) ? nil : 'no buckets'
           end
         end
