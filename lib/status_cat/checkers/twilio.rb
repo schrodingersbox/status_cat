@@ -11,7 +11,7 @@ module StatusCat
         @value = sid
         @status = fail_on_exception do
           twilio = ::Twilio::REST::Client.new(sid, auth_token)
-          twilio.api.account.messages.total ? nil : 'fail'
+          twilio.api.account.messages.list.count ? nil : 'fail'
         end
       end
     end

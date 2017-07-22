@@ -26,12 +26,12 @@ describe StatusCat::Checkers::Twilio do
     context 'fail' do
 
       it 'fails if it receives nil' do
-        expect(@twilio_messages).to receive(:total).and_return(nil)
+        expect(@twilio_messages).to receive(:list).and_return(nil)
         expect(checker.status).to_not be_nil
       end
 
       it 'fails if there is an exception' do
-        expect(@twilio_messages).to receive(:total).and_raise('This is only a test')
+        expect(@twilio_messages).to receive(:list).and_raise('This is only a test')
         expect(checker.status).to_not be_nil
       end
     end

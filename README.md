@@ -42,7 +42,7 @@ such as:
 
   General configuration should go in `config/initializers/status_cat.rb`.
 
-      Status.configure do |config|
+      StatusCat.configure do |config|
 
         config.authenticate_with do
           authenticate!

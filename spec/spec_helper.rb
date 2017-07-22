@@ -90,6 +90,6 @@ RSpec.configure do |config|
     allow(@twilio_api).to receive(:account).and_return(@twilio_account = double(Twilio::REST::Api::V2010::AccountContext))
     @twilio_messages = double(Twilio::REST::Api::V2010::AccountContext::MessageList)
     allow(@twilio_account).to receive(:messages).and_return(@twilio_messages)
-    allow(@twilio_messages).to receive(:total).and_return(0)
+    allow(@twilio_messages).to receive(:list).and_return([])
   end
 end
