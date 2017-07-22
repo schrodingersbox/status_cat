@@ -3,15 +3,30 @@ module StatusCat
     class ActiveRecord < Base
 
       def initialize
-        config = ::ActiveRecord::Base.connection_config
-        @value = "#{config[ :adapter ]}:#{config[ :username ]}@#{config[ :database ]}"
-
-        @status = fail_on_exception do
-          ::ActiveRecord::Base.connection.execute( "select max(version) from schema_migrations" )
-          nil
-        end
+        @value = "#{adapter}:#{username}@#{database}"
+        @status = fail_on_exception { test }
       end
 
+      def test
+        ::ActiveRecord::Base.connection.execute('select max(version) from schema_migrations')
+        return nil
+      end
+
+      def config
+        return ::ActiveRecord::Base.connection_config
+      end
+
+      def adapter
+        return config[:adapter]
+      end
+
+      def database
+        return config[:database]
+      end
+
+      def username
+        return config[:username]
+      end
     end
   end
 end

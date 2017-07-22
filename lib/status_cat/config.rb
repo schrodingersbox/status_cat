@@ -1,7 +1,6 @@
 require 'singleton'
 
 module StatusCat
-
   class Config
     include Singleton
 
@@ -13,9 +12,8 @@ module StatusCat
     attr_accessor :layout
 
     def initialize
-      @enabled = StatusCat::Checkers::Base.descendants.map { |klass|
-        StatusCat::Checkers::Base.class_to_name( klass )
-      }.sort
+      descendants = StatusCat::Checkers::Base.descendants
+      @enabled = descendants.map { |klass| StatusCat::Checkers::Base.class_to_name(klass) }.sort
     end
 
     def authenticate_with(&blk)
@@ -27,7 +25,5 @@ module StatusCat
       @authorize = block if block
       @authorize || NIL_PROC
     end
-
   end
-
 end

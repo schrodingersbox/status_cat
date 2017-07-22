@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 require 'status_cat/version'
 
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ['rich@schrodingersbox.com']
   s.homepage    = 'https://github.com/schrodingersbox/status_cat'
   s.summary     = 'A Rails engine for checking system health'
-  s.description =<<-EOD
+  s.description = <<-EOD
     This engine makes monitoring the status of your Rails environment easier.
 
     It provides a Rails action with a green light / red light list of configured services,

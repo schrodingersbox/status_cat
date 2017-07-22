@@ -3,7 +3,7 @@ module StatusCat
     class Dummy < Base
       def initialize
         @value = 'dummy'
-        @status = [ 'fail', 'fail', 'fail' ]
+        @status = %w[fail fail fail]
       end
     end
   end

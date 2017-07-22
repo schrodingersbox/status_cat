@@ -2,18 +2,19 @@ module StatusCat
   module Checkers
     class S3 < Base
 
+      NOT_INSTALLED = 'aws-sdk gem not installed'.freeze
+
       def initialize
-        if !defined?( ::Aws )
-          @status = 'aws-sdk gem not installed'
-        else
-          @value = Aws.config[:credentials].access_key_id
-          @status = fail_on_exception do
-            s3 = Aws::S3::Resource.new
-            ( s3.buckets.count > 0 ) ? nil : 'no buckets'
-          end
-        end
+        return @status = NOT_INSTALLED unless defined?(::Aws)
+
+        @value = Aws.config[:credentials].access_key_id
+        @status = fail_on_exception { test }
       end
 
+      def test
+        s3 = Aws::S3::Resource.new
+        return s3.buckets.count.zero? ? 'no buckets' : nil
+      end
     end
   end
 end

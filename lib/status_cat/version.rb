@@ -1,3 +1,3 @@
 module StatusCat
-  VERSION = '5.0.0'
+  VERSION = '5.0.0'.freeze
 end

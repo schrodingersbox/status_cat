@@ -4,10 +4,12 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-])
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+)
 
 SimpleCov.start 'rails' do
   add_filter '/vendor/'
@@ -30,7 +32,7 @@ ENGINE_ROOT = File.join(File.dirname(__FILE__), '..')
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[File.join(ENGINE_ROOT, "spec/support/**/*.rb")].each {|f| require f }
+Dir[File.join(ENGINE_ROOT, 'spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -42,7 +44,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -62,26 +64,30 @@ RSpec.configure do |config|
   config.order = 'random'
 
   [:controller, :view, :request].each do |type|
-    config.include ::Rails::Controller::Testing::TestProcess, :type => type
-    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
-    config.include ::Rails::Controller::Testing::Integration, :type => type
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
+    config.include ::Rails::Controller::Testing::Integration, type: type
   end
 
-  config.before( :each ) do
-    Aws.config.update({ credentials: Aws::Credentials.new( 'spec_access_key', 'spec_secret_key')})
+  config.before(:each) do
+    Aws.config.update(credentials: Aws::Credentials.new('spec_access_key', 'spec_secret_key'))
 
-    allow( Fitgem::Client ).to receive( :new ).and_return( @fitgem = double( Fitgem::Client ) )
-    allow( @fitgem ).to receive( :user_info ).and_return( {} )
+    allow(Fitgem::Client).to receive(:new).and_return(@fitgem = double(Fitgem::Client))
+    allow(@fitgem).to receive(:user_info).and_return({})
 
-    allow( HTTParty ).to receive( :get ).and_return( double( "response", :code => 200 ) )
+    allow(HTTParty).to receive(:get).and_return(double('response', code: 200))
 
-    allow( SendHub ).to receive( :new ).and_return( @send_hub = double( SendHub ) )
-    allow( @send_hub ).to receive( :get_contacts ).and_return( {} )
+    allow(SendHub).to receive(:new).and_return(@send_hub = double(SendHub))
+    allow(@send_hub).to receive(:get_contacts).and_return({})
 
-    allow( Twilio::REST::Client ).to receive( :new ).and_return( @twilio = double( Twilio::REST::Client ) )
-    allow( @twilio ).to receive( :api ).and_return( @twilio_api = double( Twilio::REST::Api ) )
-    allow( @twilio_api ).to receive( :account ).and_return( @twilio_account = double( Twilio::REST::Api::V2010::AccountContext ) )
-    allow( @twilio_account ).to receive( :messages ).and_return( @twilio_messages = double( Twilio::REST::Api::V2010::AccountContext::MessageList ) )
-    allow( @twilio_messages ).to receive( :total ).and_return( 0 )
+    allow(Stripe::Account).to receive(:retrieve).and_return(@stripe = double(Stripe::Account))
+    allow(@stripe).to receive(:email).and_return('stripe@schrodingersbox.com')
+
+    allow(Twilio::REST::Client).to receive(:new).and_return(@twilio = double(Twilio::REST::Client))
+    allow(@twilio).to receive(:api).and_return(@twilio_api = double(Twilio::REST::Api))
+    allow(@twilio_api).to receive(:account).and_return(@twilio_account = double(Twilio::REST::Api::V2010::AccountContext))
+    @twilio_messages = double(Twilio::REST::Api::V2010::AccountContext::MessageList)
+    allow(@twilio_account).to receive(:messages).and_return(@twilio_messages)
+    allow(@twilio_messages).to receive(:total).and_return(0)
   end
 end

@@ -1,12 +1,13 @@
-class StatusCat::StatusMailer <  ActionMailer::Base
+module StatusCat
+  class StatusMailer < ActionMailer::Base
 
-  add_template_helper( StatusCat::StatusHelper )
+    add_template_helper(StatusCat::StatusHelper)
 
-  def failure( checkers )
-    @checkers = checkers
+    def failure(checkers)
+      @checkers = checkers
 
-    config = StatusCat.config
-    mail( :to => config.to, :from => config.from, :subject => config.subject )
+      config = StatusCat.config
+      mail(to: config.to, from: config.from, subject: config.subject)
+    end
   end
-
 end
