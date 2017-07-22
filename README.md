@@ -157,16 +157,7 @@ Create or add to `config/initializers/status_cat.rb`
 
  * Version 0.0.2 = Rails 3 compatible
  * Version 0.0.3 = Rails 4 compatible
+ * Version 5.0.0 = Rails 5 compatible
 
-## TODO
 
- * Add disk space checker with externally configurable limit
- * Add Zencoder checker?
- * Add NewRelic checker?
 
- * Dynamically create rake tasks for each checker
-
- * Doc
-   * General checker concept
-   * Shared spec
-   * Env vars to configure services

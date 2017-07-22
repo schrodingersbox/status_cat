@@ -21,4 +21,4 @@ spec/dummy/.sass-cache
 Gemfile.lock
 
 passwords.yml
-.ruby-version
+/.ruby-version

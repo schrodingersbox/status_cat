@@ -5,6 +5,7 @@ require 'status_cat/version'
 Gem::Specification.new do |s|
   s.name        = 'status_cat'
   s.version     = StatusCat::VERSION
+  s.date        = Date.today
   s.licenses    = ['MIT']
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']
@@ -26,20 +27,20 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,spec/support/shared}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'rails', '~> 4.0', '>= 4.0.0'
+  s.add_dependency 'rails', '~> 5.0', '>= 5.0.0'
 
-  s.add_development_dependency 'sqlite3', '~> 1.3', '>= 1.3.8'
-  s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
-  s.add_development_dependency 'rspec-rails', '~> 3.1', '>= 3.1.0'
-  s.add_development_dependency 'webrat', '~> 0.7', '>= 0.7.3'
-  s.add_development_dependency 'simplecov', '~> 0.8', '>= 0.8.2'
-  s.add_development_dependency 'coveralls', '~> 0.7', '>= 0.7.0'
-  s.add_development_dependency 'spec_cat', '~> 3.0', '>= 3.0.0'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'webrat'
+  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'spec_cat'
 
-  s.add_development_dependency 'aws-sdk', '~> 1.38', '>= 1.38.0'
-  s.add_development_dependency 'delayed_job_active_record', '~> 4.0', '>= 4.0.0'
-  s.add_development_dependency 'fitgem', '~> 0.10', '>= 0.10.0'
-  s.add_development_dependency 'httparty', '~> 0.13', '>= 0.13.0'
-  s.add_development_dependency 'ruby-sendhub', '~> 0.0', '>= 0.0.0'
-  s.add_development_dependency 'twilio-ruby', '~> 3.11', '>= 3.11.0'
+  s.add_development_dependency 'aws-sdk'
+  s.add_development_dependency 'delayed_job_active_record'
+  s.add_development_dependency 'fitgem'
+  s.add_development_dependency 'httparty'
+  s.add_development_dependency 'ruby-sendhub'
+  s.add_development_dependency 'twilio-ruby'
 end
