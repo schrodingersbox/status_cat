@@ -6,7 +6,7 @@ describe StatusCat::Checkers::Profilesio do
 
   before(:each) do
     allow(HTTParty).to receive(:get).and_return(response)
-    ENV['PROFILESIO_KEY'] = key
+    StatusCat::Checkers::Profilesio.api_key = key
   end
 
   it_should_behave_like 'a status checker'

@@ -13,7 +13,7 @@ describe StatusCat::Checkers::SendHub do
     end
 
     it 'sets the value' do
-      expect(checker.value).to eql(ENV['SEND_HUB_NUMBER'])
+      expect(checker.value).to eql(StatusCat::Checkers::SendHub.number)
     end
 
     context 'pass' do

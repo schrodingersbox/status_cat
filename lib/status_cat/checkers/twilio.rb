@@ -1,12 +1,16 @@
 module StatusCat
   module Checkers
     class Twilio < Base
+
+      cattr_accessor :sid
+      cattr_accessor :auth_token
+
       def initialize
         return if gem_missing?('twilio-ruby', defined?(::Twilio))
 
-        @value = ENV['TWILIO_SID']
+        @value = sid
         @status = fail_on_exception do
-          twilio = ::Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
+          twilio = ::Twilio::REST::Client.new(sid, auth_token)
           twilio.api.account.messages.total ? nil : 'fail'
         end
       end

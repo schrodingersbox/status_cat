@@ -40,7 +40,7 @@ such as:
 
 ## Configuration
 
-  All configuration should go in `config/initializers/status_cat.rb`.
+  General configuration should go in `config/initializers/status_cat.rb`.
 
       Status.configure do |config|
 
@@ -61,6 +61,14 @@ such as:
 
         config.enabled = [ :action_mailer, :active_record ]
       end
+      
+  Checker specific configuration should in the initializer it relates to, 
+  so it will be kept in sync.  i.e. `config/initializers/twilio.rb`
+  
+      Twilio.configure do |config|
+        config.account_sid = StatusCat::Checkers::Twilio.sid = ENV['TWILIO_SID']
+        config.auth_token = StatusCat::Checkers::Twilio.auth_token = ENV['TWILIO_AUTH_TOKEN']
+      end      
 
 ## How To
 

@@ -13,7 +13,7 @@ describe StatusCat::Checkers::Fitbit do
     end
 
     it 'sets the value' do
-      expect(checker.value).to eql(ENV['FITBIT_CONSUMER_KEY'])
+      expect(checker.value).to eql(StatusCat::Checkers::Fitbit.consumer_key)
     end
 
     context 'pass' do

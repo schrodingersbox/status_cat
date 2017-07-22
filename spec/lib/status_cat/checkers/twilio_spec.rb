@@ -13,7 +13,7 @@ describe StatusCat::Checkers::Twilio do
     end
 
     it 'sets the value' do
-      expect(checker.value).to eql(ENV['TWILIO_SID'])
+      expect(checker.value).to eql(StatusCat::Checkers::Twilio.sid)
     end
 
     context 'pass' do
