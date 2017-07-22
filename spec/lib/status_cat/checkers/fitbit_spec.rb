@@ -6,6 +6,12 @@ describe StatusCat::Checkers::Fitbit do
 
   describe '#initialize' do
 
+    it 'tolerates the gem missing' do
+      gem = Object.send(:remove_const, :Fitgem)
+      expect(checker.status).to eql('fitgem gem is not installed')
+      Object.const_set(:Fitgem, gem)
+    end
+
     it 'sets the value' do
       expect(checker.value).to eql(ENV['FITBIT_CONSUMER_KEY'])
     end

@@ -31,6 +31,13 @@ module StatusCat
         end
         return nil
       end
+
+      def gem_missing?(gem, present)
+        return false if present
+
+        @status = "#{gem} gem is not installed"
+        return true
+      end
     end
   end
 end

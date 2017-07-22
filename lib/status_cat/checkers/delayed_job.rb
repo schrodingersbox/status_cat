@@ -4,10 +4,9 @@ module StatusCat
     class DelayedJob < Base
       include ActionView::Helpers::DateHelper
 
-      NOT_INSTALLED = 'delayed_job gem not installed'.freeze
-
       def initialize
-        @status = defined?(::Delayed) ? fail_on_exception { test } : NOT_INSTALLED
+        return if gem_missing?('delayed_job', defined?(::Delayed))
+        @status = fail_on_exception { test }
       end
 
       def test

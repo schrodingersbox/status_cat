@@ -1,5 +1,3 @@
-require 'aws-sdk'
-
 describe StatusCat::Checkers::S3 do
 
   let(:checker) { StatusCat::Checkers::S3.new.freeze }
@@ -11,10 +9,10 @@ describe StatusCat::Checkers::S3 do
 
   it_should_behave_like 'a status checker'
 
-  it 'tolerates AWS being undefined' do
-    aws = Object.send(:remove_const, :Aws)
-    expect(checker.status).to_not be_nil
-    Object.const_set(:Aws, aws)
+  it 'tolerates the gem misssing' do
+    gem = Object.send(:remove_const, :Aws)
+    expect(checker.status).to eql('aws-sdk gem is not installed')
+    Object.const_set(:Aws, gem)
   end
 
   it 'uses the aws access key as the value' do

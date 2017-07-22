@@ -6,6 +6,12 @@ describe StatusCat::Checkers::Twilio do
 
   describe '#initialize' do
 
+    it 'tolerates the gem misssing' do
+      gem = Object.send(:remove_const, :Twilio)
+      expect(checker.status).to eql('twilio-ruby gem is not installed')
+      Object.const_set(:Twilio, gem)
+    end
+
     it 'sets the value' do
       expect(checker.value).to eql(ENV['TWILIO_SID'])
     end

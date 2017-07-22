@@ -3,6 +3,8 @@ module StatusCat
     class Fitbit < Base
 
       def initialize
+        return if gem_missing?('fitgem', defined?(::Fitgem))
+
         @value = ENV['FITBIT_CONSUMER_KEY']
         @status = fail_on_exception do
           user_info = ::Fitgem::Client.new(

@@ -1,15 +1,13 @@
-require 'delayed_job_active_record'
-
 describe StatusCat::Checkers::DelayedJob do
 
   let(:checker) { StatusCat::Checkers::DelayedJob.new.freeze }
 
   it_should_behave_like 'a status checker'
 
-  it 'tolerates Delayed::Job being undefined' do
-    dj = Object.send(:remove_const, :Delayed)
-    expect(checker.status).to_not be_nil
-    Object.const_set(:Delayed, dj)
+  it 'tolerates the gem missing' do
+    gem = Object.send(:remove_const, :Delayed)
+    expect(checker.status).to eql('delayed_job gem is not installed')
+    Object.const_set(:Delayed, gem)
   end
 
   it 'fails if there is an exception' do

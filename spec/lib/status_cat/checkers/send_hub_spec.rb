@@ -6,6 +6,12 @@ describe StatusCat::Checkers::SendHub do
 
   describe '#initialize' do
 
+    it 'tolerates the gem misssing' do
+      gem = Object.send(:remove_const, :SendHub)
+      expect(checker.status).to eql('ruby-sendhub gem is not installed')
+      Object.const_set(:SendHub, gem)
+    end
+
     it 'sets the value' do
       expect(checker.value).to eql(ENV['SEND_HUB_NUMBER'])
     end

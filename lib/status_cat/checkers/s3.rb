@@ -2,10 +2,8 @@ module StatusCat
   module Checkers
     class S3 < Base
 
-      NOT_INSTALLED = 'aws-sdk gem not installed'.freeze
-
       def initialize
-        return @status = NOT_INSTALLED unless defined?(::Aws)
+        return if gem_missing?('aws-sdk', defined?(::Aws))
 
         @value = Aws.config[:credentials].access_key_id
         @status = fail_on_exception { test }

@@ -1,5 +1,3 @@
-require 'stripe'
-
 describe StatusCat::Checkers::Stripe do
 
   let(:checker) { StatusCat::Checkers::Stripe.new.freeze }
@@ -7,10 +5,10 @@ describe StatusCat::Checkers::Stripe do
 
   it_should_behave_like 'a status checker'
 
-  it 'tolerates Stripe being undefined' do
-    stripe = Object.send(:remove_const, :Stripe)
-    expect(checker.status).to_not be_nil
-    Object.const_set(:Stripe, stripe)
+  it 'tolerates the gem misssing' do
+    gem = Object.send(:remove_const, :Stripe)
+    expect(checker.status).to eql('stripe gem is not installed')
+    Object.const_set(:Stripe, gem)
   end
 
   it 'fails if there is an exception talking to Stripe' do

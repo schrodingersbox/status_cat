@@ -3,10 +3,9 @@ module StatusCat
 
     class Stripe < Base
 
-      NOT_INSTALLED = 'stripe gem not installed'.freeze
-
       def initialize
-        return @status = NOT_INSTALLED unless defined?(::Stripe)
+        return if gem_missing?('stripe', defined?(::Stripe))
+
         @status = fail_on_exception do
           @value = account.email
           test

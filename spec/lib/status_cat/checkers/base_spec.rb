@@ -46,4 +46,20 @@ describe StatusCat::Checkers::Base do
       expect(status).to be(true)
     end
   end
+
+  describe '#gem_missing?' do
+
+    it 'returns false when present is true' do
+      expect(checker.send(:gem_missing?, 'foo', true)).to be(false)
+    end
+
+    it 'returns true when present is false' do
+      expect(checker.send(:gem_missing?, 'foo', false)).to be(true)
+    end
+
+    it 'sets status when present is false' do
+      checker.send(:gem_missing?, 'foo', false)
+      expect(checker.status).to eql('foo gem is not installed')
+    end
+  end
 end

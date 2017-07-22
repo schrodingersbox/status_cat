@@ -23,9 +23,11 @@ require 'rails-controller-testing'
 require 'spec_cat'
 
 require 'aws-sdk'
+require 'delayed_job_active_record'
 require 'fitgem'
 require 'httparty'
 require 'ruby-sendhub'
+require 'stripe'
 require 'twilio-ruby'
 
 ENGINE_ROOT = File.join(File.dirname(__FILE__), '..')
