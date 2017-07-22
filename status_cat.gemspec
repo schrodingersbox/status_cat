@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'spec_cat'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'term-ansicolor'
-  s.add_development_dependency 'webrat'
 
   s.add_development_dependency 'aws-sdk'
   s.add_development_dependency 'delayed_job_active_record'

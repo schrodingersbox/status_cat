@@ -97,8 +97,6 @@ Create or add to `config/initializers/status_cat.rb`
 
 1. Run `rake status_cat:cron` from a cron job or other scheduling system.
 
-PLEASE NOTE: The :action_mailer checker will attempt to send a test email to your `StatusCat.config.noreply` email address.  This could cause unwanted spam or incur charges if you're using a metered mail transfer agent, like SendGrid.
-
 ### Add New Checkers
 
 You can place new checkers anywhere you like, but `app/checkers` is the recommended location.
