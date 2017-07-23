@@ -1,11 +1,12 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 require 'status_cat/version'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'status_cat'
   s.version     = StatusCat::VERSION
-  s.date        = '2017-07-22'
+  s.date        = Date.today.to_s
   s.licenses    = ['MIT']
   s.authors     = ['Rich Humphrey']
   s.email       = ['rich@schrodingersbox.com']

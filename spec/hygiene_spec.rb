@@ -10,5 +10,4 @@ describe 'hygiene' do
       end
     end
   end
-
 end
