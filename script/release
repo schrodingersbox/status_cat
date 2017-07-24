@@ -6,6 +6,8 @@ require 'system_cat'
 
 include SystemCat
 
+GEM_NAME = 'status_cat'.freeze
+
 status = Git.status
 raise 'Not on master' unless status[:branch] == :master
 raise 'Uncommited changes' unless status[:clean]
@@ -15,8 +17,8 @@ Shell.run('rspec spec')
 
 version = Version.new('config/version.txt')
 
-Shell.run('gem build status_cat.gemspec')
-Shell.run("gem push system_cat-#{version}.gem")
+Shell.run("gem build #{GEM_NAME}.gemspec")
+Shell.run("gem push #{GEM_NAME}-#{version}.gem")
 
 Git.tag(version.to_s)
 version.bump
