@@ -1,11 +1,11 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
-require 'status_cat/version'
+require 'system_cat/version'
 require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'status_cat'
-  s.version     = StatusCat::VERSION
+  s.version     = SystemCat::Version.new.to_s
   s.date        = Date.today.to_s
   s.licenses    = ['MIT']
   s.authors     = ['Rich Humphrey']
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'spec_cat'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'system_cat'
   s.add_development_dependency 'term-ansicolor'
 
   s.add_development_dependency 'aws-sdk'
