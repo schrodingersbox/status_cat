@@ -27,6 +27,7 @@ require 'delayed_job_active_record'
 require 'fitgem'
 require 'httparty'
 require 'ruby-sendhub'
+require 'slack-ruby-client'
 require 'stripe'
 require 'twilio-ruby'
 
@@ -81,6 +82,13 @@ RSpec.configure do |config|
 
     allow(SendHub).to receive(:new).and_return(@send_hub = double(SendHub))
     allow(@send_hub).to receive(:get_contacts).and_return({})
+
+    allow(Slack).to receive(:config).and_return(@slack_config = double(Slack::Config))
+    allow(@slack_config).to receive(:token).and_return('slack_token')
+
+    allow(Slack::Web::Client).to receive(:new).and_return(@slack = double(Slack::Web::Client))
+    allow(@slack).to receive(:auth_test).and_return(@slack_message = double(Slack::Messages::Message))
+    allow(@slack_message).to receive(:ok?).and_return(true)
 
     allow(Stripe::Account).to receive(:retrieve).and_return(@stripe = double(Stripe::Account))
     allow(@stripe).to receive(:email).and_return('stripe@schrodingersbox.com')

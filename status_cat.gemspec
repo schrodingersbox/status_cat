@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fitgem'
   s.add_development_dependency 'httparty'
   s.add_development_dependency 'ruby-sendhub'
+  s.add_development_dependency 'slack-ruby-client'
   s.add_development_dependency 'stripe'
   s.add_development_dependency 'twilio-ruby'
 end

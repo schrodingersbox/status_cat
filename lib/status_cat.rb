@@ -1,9 +1,5 @@
-require 'status_cat/config'
-require 'status_cat/engine'
-require 'status_cat/status'
-
 require 'require_all'
-require_rel 'status_cat/checkers'
+require_rel 'status_cat'
 
 module StatusCat
 
