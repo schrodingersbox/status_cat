@@ -16,7 +16,7 @@ SimpleCov.start 'rails' do
   add_filter '/spec/'
 end
 
-require File.expand_path('../dummy/config/environment', __FILE__)
+require File.expand_path('dummy/config/environment', __dir__)
 require 'rspec/rails'
 require 'rails-controller-testing'
 

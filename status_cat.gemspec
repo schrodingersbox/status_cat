@@ -1,4 +1,4 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 
 require 'system_cat/version'
 require 'date'
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email       = ['rich@schrodingersbox.com']
   s.homepage    = 'https://github.com/schrodingersbox/status_cat'
   s.summary     = 'A Rails engine for checking system health'
-  s.description = <<-EOD
+  s.description = <<-DESCRIPTION
     This engine makes monitoring the status of your Rails environment easier.
 
     It provides a Rails action with a green light / red light list of configured services,
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
      * AWS S3
      * Delayed Job
      * Stripe
-  EOD
+  DESCRIPTION
 
   s.files = Dir['{app,config,db,lib,spec/support/shared}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']

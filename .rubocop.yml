@@ -24,6 +24,9 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/MixinUsage:
+  Enabled: false
+
 Style/SymbolArray:
   Enabled: false
 

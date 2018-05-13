@@ -31,6 +31,7 @@ module StatusCat
         end
         return nil
       end
+      # rubocop:enable Lint/RescueException
 
       def gem_missing?(gem, present)
         return false if present

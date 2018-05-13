@@ -6,7 +6,7 @@ describe StatusCat::StatusController do
 
     it 'gets successfully' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns @checkers to StatusCat::Status.all' do
