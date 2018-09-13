@@ -11,7 +11,7 @@ describe StatusCat::Checkers::S3 do
 
   it 'tolerates the gem misssing' do
     gem = Object.send(:remove_const, :Aws)
-    expect(checker.status).to eql('aws-sdk gem is not installed')
+    expect(checker.status).to eql('aws-sdk-s3 gem is not installed')
     Object.const_set(:Aws, gem)
   end
 

@@ -3,7 +3,7 @@ module StatusCat
     class S3 < Base
 
       def initialize
-        return if gem_missing?('aws-sdk', defined?(::Aws))
+        return if gem_missing?('aws-sdk-s3', defined?(::Aws))
 
         @value = Aws.config[:credentials].access_key_id
         @status = fail_on_exception { test }
